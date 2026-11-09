@@ -86,8 +86,10 @@ h1{font-size:calc(24px*var(--scale));font-weight:600;margin:0 0 20px;display:fle
 .lbl small{display:block;color:var(--muted);font-size:calc(12.5px*var(--scale));margin-top:2px;max-width:60ch}
 .ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 .subh{position:relative;padding:16px 0 4px}
-.subh::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+.subh::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
 .rows>.subh:first-child::before{display:none}
+.row.ban+.subh::before,.row.beta+.subh::before,.subh+.subh::before{display:none}
+.row.ban+.subh,.row.beta+.subh{padding-top:8px}
 .subh b,.subh h3{margin:0;font-weight:600;font-size:calc(15px*var(--scale))}
 .card>header h2{margin:0;font:inherit}
 h1:focus{outline:none}
@@ -99,6 +101,58 @@ h1:focus{outline:none}
 .badge{margin-left:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:1px 8px}
 .row.beta{background:var(--accent-soft);border-radius:8px;border-top:0;padding:12px 14px;margin:12px -14px 4px}
 .row.beta+.row{border-top:0}
+.sopts{display:flex;flex-direction:column;gap:10px}
+.sopt{border:1px solid var(--line);border-radius:8px;background:var(--ctl);overflow:hidden}
+.sopt:hover{border-color:var(--accent)}
+.sopt.on{border-color:var(--accent)}
+.sopt .sh{display:flex;gap:12px;align-items:center;padding:12px 14px;cursor:pointer}
+.sopt .sh svg{color:var(--accent)}
+.sopt.on .sh{background:var(--accent-soft);color:var(--accent-ink);font-weight:600}
+.sopt .sb{padding:12px 14px 14px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line)}
+.sopt .sd{color:var(--muted)}
+.spv .sp-h,.spv .sp-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr) minmax(0,1.4fr);gap:12px;padding:8px 14px;align-items:center}
+.sp-h{background:var(--head);color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.sp-row{border-top:1px solid var(--line)}
+.sp-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-row .sp-k{color:var(--accent);font-weight:600}
+.sp-row.unread .sp-s{font-weight:600}
+.sp-row.rep .sp-s{padding-left:16px;color:var(--muted)}
+.sp-g{padding:6px 14px;background:var(--accent-soft);color:var(--accent-ink);font-weight:600;font-size:12.5px;border-top:1px solid var(--line)}
+.notif{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:8px;background:var(--ctl);padding:12px 14px;max-width:340px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.notif .nic{width:36px;height:36px;border-radius:8px;background:var(--accent-fill);color:#fff;display:grid;place-items:center}
+.notif b{display:block}
+.notif span:not(.nic){color:var(--muted)}
+.cpv{border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--ctl);max-width:480px}
+.cpv.cv-compact{gap:2px;padding:8px 12px}
+.cpv .cm b{margin-right:8px}
+.ct-mail .cm b{color:var(--accent)}
+.ct-bubbles .cm{max-width:75%;padding:8px 12px;border-radius:14px;background:var(--head);align-self:flex-start}
+.ct-bubbles .cm.me{align-self:flex-end;background:var(--accent-fill);color:#fff}
+.ct-bubbles .cm b{display:block;font-size:12px;opacity:.85;margin:0}
+.ct-dark{background:#1c1b22;color:#fbfbfe;border-color:#3d3c4a}
+.ct-dark .cm b{color:#6aa0f5}
+.ct-paper{background-color:#fffdf5;color:#15141a;background-image:repeating-linear-gradient(transparent 0 27px,#e8e2c8 27px 28px)}
+.ct-paper .cm b{color:#8a5a00}
+.ct-simple .cm b{font-weight:500;color:var(--muted)}
+.drop{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:1.5px dashed var(--field-bd);border-radius:8px;background:var(--ctl);padding:16px 18px}
+.drop.over,.sfile.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop>svg{color:var(--accent)}
+.drop .dt{flex:1;min-width:180px}
+.drop .dt b{display:block}
+.sfile{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;background:var(--ctl);padding:12px 14px}
+.pbtn{width:44px;height:44px;border-radius:50%;border:0;background:var(--accent-fill);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.pbtn:hover:not(:disabled){filter:brightness(.88)}
+.pbtn:disabled{background:var(--btn);color:var(--off);cursor:not-allowed}
+.sfi{flex:1;min-width:160px}
+.sfi b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prog{height:4px;border-radius:2px;background:var(--line);margin-top:8px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--accent-fill)}
+.sfp{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.sfc{border-radius:8px;background:var(--head);padding:12px 14px;min-width:0;cursor:default}
+.sfc .lnk{pointer-events:none}
+.sfc .cap{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.pv p{margin:6px 0 0}
+.pv.plain{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;white-space:pre-wrap;overflow-wrap:anywhere}
 .card.hl{box-shadow:0 0 0 3px var(--accent)}
 .row.hl{background:var(--accent-soft);border-radius:8px;box-shadow:0 0 0 8px var(--accent-soft)}
 
@@ -113,6 +167,8 @@ h1:focus{outline:none}
 .btn.primary:disabled{background:var(--btn);border-color:var(--btn-bd);color:var(--off)}
 .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
 .btn.danger:hover:not(:disabled){background:color-mix(in srgb,var(--danger) 82%,#000)}
+.btn.ghost-danger{background:none;border-color:transparent;box-shadow:none;color:var(--err)}
+.btn.ghost-danger:hover:not(:disabled){background:color-mix(in srgb,var(--err) 12%,transparent)}
 .btn.sm{height:24px;padding:0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
 .ibtn{width:32px;height:32px;border:0;background:none;display:grid;place-items:center;border-radius:4px;cursor:pointer;color:inherit;flex:none}
 .ibtn.round{border-radius:50%}
@@ -163,7 +219,11 @@ h1:focus{outline:none}
 /* segmented control */
 .seg{display:inline-flex;background:var(--seg-bg);border:1px solid var(--line);border-radius:8px;padding:3px;gap:2px;flex-wrap:wrap}
 .seg button{display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;background:none;border-radius:6px;height:34px;padding:0 14px;cursor:pointer;font-weight:600;color:var(--muted)}
-.seg button:hover{color:var(--fg)}
+.seg button:hover{color:var(--fg);background:color-mix(in srgb,var(--fg) 8%,transparent)}
+.seg.tiles{background:none;border:0;padding:0;gap:10px}
+.seg.tiles button{height:auto;min-height:48px;border:1.5px solid var(--field-bd);background:var(--ctl);color:var(--fg);padding:8px 16px;border-radius:8px;text-align:left}
+.seg.tiles button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.seg.tiles button[aria-pressed="true"]{border-color:var(--accent-fill);background:var(--accent-soft);color:var(--accent-ink);box-shadow:0 0 0 1px var(--accent-fill)}
 .seg button[aria-pressed="true"]{background:var(--ctl);border-color:var(--accent);color:var(--accent)}
 
 /* checkbox and radio */
@@ -183,18 +243,20 @@ input[type=checkbox]:checked{background:var(--accent-fill) url("data:image/svg+x
 input[type=radio]:checked{border:2px solid var(--accent-fill);background:radial-gradient(circle,var(--accent-fill) 0 4.5px,transparent 5.5px),var(--ctl)}
 
 /* radio card */
-.rcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
-.rcard{display:flex;flex-direction:column;border:1px solid transparent;border-radius:8px;background:var(--ctl);cursor:pointer;overflow:hidden}
+.rcards{display:grid;grid-template-columns:1fr;gap:12px}
+.rcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;background:var(--ctl);cursor:pointer;overflow:hidden}
 .rcard .rh{display:flex;gap:10px;align-items:center;padding:10px 12px;color:var(--accent-ink)}
 .rcard .rh b{font-weight:700}
 .rcard .rb{padding:8px 12px 14px;color:var(--fg);flex:1}
-.rcard:hover .rh{background:color-mix(in srgb,var(--accent-fill) 82%,#000);color:#fff}
-.rcard:hover .rh input{border-color:#fff}
-.rcard:has(input:checked){border-color:var(--accent-fill);box-shadow:0 1px 4px rgba(54,114,214,.25)}
+.rcard:hover{border-color:var(--accent)}
+.prov{display:flex;flex-direction:column;gap:4px;margin-top:12px;align-items:flex-start}
+.prov small{color:inherit}
+.prov .sel{min-width:200px;color:var(--fg)}
+.rcard:has(input:checked){border-color:var(--accent)}
 .rcard:has(input:checked) .rh{background:var(--accent-fill);color:#fff}
 .rcard:has(input:checked) .rh input{border-color:#fff;background:radial-gradient(circle,#fff 0 4.5px,transparent 5.5px),transparent}
 .rcard:has(input:checked) .rb{color:var(--accent-ink)}
-.rec{margin-left:auto;background:#fff;color:#2a4f8f;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+.rcard .rh .badge,.sopt .sh .badge{margin-left:auto}
 
 /* banners */
 .row.ban{border-top:0;padding:16px 0 4px}
@@ -224,8 +286,9 @@ input[type=radio]:checked{border:2px solid var(--accent-fill);background:radial-
 .eq i{width:3px;background:var(--accent);border-radius:2px;animation:eq .6s infinite alternate}
 .eq i:nth-child(2){animation-delay:.15s}.eq i:nth-child(3){animation-delay:.3s}
 @keyframes eq{from{height:4px}to{height:16px}}
-.accs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.acc{display:flex;align-items:center;gap:10px;border:2px solid var(--line);background:var(--ctl);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
+.accs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:560px}
+@media (max-width:420px){.accs{grid-template-columns:1fr}}
+.acc{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--ctl);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
 .acc[aria-pressed="true"]{border-color:var(--accent)}
 .acc i{width:18px;height:18px;border-radius:50%;flex:none}
 .preview{border:1px solid var(--line);border-radius:8px;background:var(--ctl);overflow:hidden}
@@ -256,7 +319,7 @@ input[type=radio]:checked{border:2px solid var(--accent-fill);background:radial-
 .sumlist{margin:0;padding-left:20px}
 .mobhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .mtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-.mtile{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);background:var(--ctl);border-radius:8px;padding:12px;cursor:pointer}
+.mtile{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--ctl);border-radius:8px;padding:12px;cursor:pointer}
 .mtile:hover{border-color:var(--accent)}
 .mtile:has(input:checked){border-color:var(--accent-fill);background:var(--accent-soft)}
 .mtile input{margin:0}
@@ -358,11 +421,15 @@ const P={
  sync:'M224 48v48a8 8 0 0 1-8 8h-48a8 8 0 0 1 0-16h28.69l-14.63-14.63a79.56 79.56 0 0 0-56.13-23.43h-.45a79.52 79.52 0 0 0-55.89 22.77a8 8 0 0 1-11.18-11.44a96 96 0 0 1 135 .79L208 76.69V48a8 8 0 0 1 16 0m-37.59 135.29a80 80 0 0 1-112.47-.66L59.31 168H88a8 8 0 0 0 0-16H40a8 8 0 0 0-8 8v48a8 8 0 0 0 16 0v-28.69l14.63 14.63A95.43 95.43 0 0 0 130 222.06h.53a95.36 95.36 0 0 0 67.07-27.33a8 8 0 0 0-11.18-11.44Z',
  drives:'M208 136H48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16v-48a16 16 0 0 0-16-16m0 64H48v-48h160zm0-160H48a16 16 0 0 0-16 16v48a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V56a16 16 0 0 0-16-16m0 64H48V56h160zm-16-24a12 12 0 1 1-12-12a12 12 0 0 1 12 12m0 96a12 12 0 1 1-12-12a12 12 0 0 1 12 12'
 };
+P.wand='M48 64a8 8 0 0 1 8-8h16V40a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16H88v16a8 8 0 0 1-16 0V72H56a8 8 0 0 1-8-8m136 128h-8v-8a8 8 0 0 0-16 0v8h-8a8 8 0 0 0 0 16h8v8a8 8 0 0 0 16 0v-8h8a8 8 0 0 0 0-16m56-48h-16v-16a8 8 0 0 0-16 0v16h-16a8 8 0 0 0 0 16h16v16a8 8 0 0 0 16 0v-16h16a8 8 0 0 0 0-16m-20.69-64L80 219.31a16 16 0 0 1-22.62 0l-20.7-20.68a16 16 0 0 1 0-22.63L176 36.69a16 16 0 0 1 22.63 0l20.68 20.68a16 16 0 0 1 0 22.63m-54.63 32L144 91.31l-96 96L68.68 208ZM208 68.69L187.31 48l-32 32L176 100.69Z';
+P.copy='M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8m-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z';
+P.code='M69.12 94.15L28.5 128l40.62 33.85a8 8 0 1 1-10.24 12.29l-48-40a8 8 0 0 1 0-12.29l48-40a8 8 0 0 1 10.24 12.3m176 27.7l-48-40a8 8 0 1 0-10.24 12.3L227.5 128l-40.62 33.85a8 8 0 1 0 10.24 12.29l48-40a8 8 0 0 0 0-12.29m-82.39-89.37a8 8 0 0 0-10.25 4.79l-64 176a8 8 0 0 0 4.79 10.26A8.1 8.1 0 0 0 96 224a8 8 0 0 0 7.52-5.27l64-176a8 8 0 0 0-4.79-10.25';
+P.textaa='M87.24 52.59a8 8 0 0 0-14.48 0l-64 136a8 8 0 1 0 14.48 6.81L39.9 160h80.2l16.66 35.4a8 8 0 1 0 14.48-6.81ZM47.43 144L80 74.79L112.57 144ZM200 96c-12.76 0-22.73 3.47-29.63 10.32a8 8 0 0 0 11.26 11.36c3.8-3.77 10-5.68 18.37-5.68c13.23 0 24 9 24 20v3.22a42.76 42.76 0 0 0-24-7.22c-22.06 0-40 16.15-40 36s17.94 36 40 36a42.73 42.73 0 0 0 24-7.25a8 8 0 0 0 16-.75v-60c0-19.85-17.94-36-40-36m0 88c-13.23 0-24-9-24-20s10.77-20 24-20s24 9 24 20s-10.77 20-24 20';
 P.envx=P.mail;
 const ic=(n,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="${P[n]}"/></svg>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-const DEF={acct:'work',accts:{},syncIn:false,syncAccts:true,syncAddr:true,syncCal:true,syncIdent:true,syncPw:false,mob_work:true,mob_personal:false,mobPw:false,
+const DEF={acct:'work',accts:{},syncIn:false,os:'win',notifSoundSrc:'default',trayUnread:false,osSearch:false,idleAway:true,chatSoundSrc:'system',visHours:'9',showLoc:false,multiWeeks:'4',prevWeeks:'0',agendaDays:'14',taskStart:'none',taskDue:'none',editInTab:false,promptDelete:true,soundSrc:'default',reminderDialog:true,missedReminders:true,evAlarm:'on',evAlarmTime:'15',taskAlarm:'off',taskAlarmTime:'15',dateFmt:'long',tzMode:'auto',tzValue:'America/New_York',weekStart:'1',syncSrv:true,syncFilters:true,syncKeys:true,syncDevice:'Shiah’s computer',syncAccts:true,syncAddr:true,syncCal:true,syncIdent:true,syncPw:false,mob_work:true,mob_personal:false,mobPw:false,
  composeFont:'sys',composeSize:'12',ignoreSender:false,paraSpacing:false,sendFormat:'auto',forwardAs:'inline',addFileType:true,autosave:true,autosaveMin:'5',
  missingAtt:true,shareLarge:true,shareLargeMb:'5',openPdf:'preview',openImg:'preview',openDoc:'ask',
  collectOutgoing:true,collectTo:'collected',savedContacts:'personal',dirStartup:'last',acLocal:true,acNetwork:false,acServer:false,acDirServer:'none',
@@ -386,6 +453,7 @@ try{Object.assign(S,JSON.parse(localStorage.getItem('tb-settings-proto')||'{}'))
 (function(){const m={'Sam Rivera':'Shiah Russell','sam@example.org':'shiah@example.org','sam.rivera@example.com':'shiah.russell@example.com'};
  const fix=o=>{for(const k in o){if(typeof o[k]==='string'&&m[o[k]])o[k]=m[o[k]];else if(o[k]&&typeof o[k]==='object')fix(o[k])}};fix(S)})();
 
+S.os='win';
 const SECTIONS=[
  {id:'accounts',label:'Accounts',icon:'user'},
  {id:'general',label:'General',icon:'gear'},
@@ -399,7 +467,7 @@ const SECTIONS=[
  {id:'beta',label:'Beta features',icon:'flask'}
 ];
 const SUBT={
- accounts:'Your email accounts: set up on your phone, sync, and identity, servers, folders and security for each one.',
+ accounts:'Your email accounts: identity, servers, folders and security for each one, plus setting up mobile and sync.',
  general:'Language, startup, downloads and updates.',
  appearance:'How Thunderbird looks: light or dark mode, colours and layout.',
  notifications:'Sounds and alerts for new mail.',
@@ -411,13 +479,29 @@ const SUBT={
  beta:'Features still in development that you can try early.'
 };
 const LANGS=[['en-US','English (US)'],['en-GB','English (UK)'],['de','Deutsch'],['fr','Français'],['es','Español'],['nl','Nederlands']];
-const FOLDERS=[['inbox','Inbox'],['sent','Sent'],['archives','Archives'],['drafts','Drafts'],['trash','Trash'],['junk','Junk']];
+const FOLDERS=[['inbox','Inbox'],['sent','Sent'],['archives','Archives'],['drafts','Drafts'],['trash','Trash'],['junk','Spam']];
+const HRS=[...Array(24).keys()].map(h=>[String(h),h===0?'Midnight':h===12?'Noon':h+':00']);
+const DUR=[['5','5 minutes'],['10','10 minutes'],['15','15 minutes'],['30','30 minutes'],['45','45 minutes'],['60','1 hour'],['90','1.5 hours'],['120','2 hours']];
+const TSK=[['none','None'],['startofday','Start of Day'],['endofday','End of Day'],['tomorrow','Tomorrow'],['nextweek','Next Week'],['relcur','Relative to Current Time'],['relstart','Relative to Start'],['relnexthr','Relative to Next Hour']];
+const WKS=[['1','1 week'],['2','2 weeks'],['3','3 weeks'],['4','4 weeks'],['5','5 weeks'],['6','6 weeks']];
 const HOURS=[['6','6:00'],['7','7:00'],['8','8:00'],['9','9:00'],['10','10:00'],['16','16:00'],['17','17:00'],['18','18:00'],['19','19:00']];
 const CARDS={
 mobile:[
- {id:'mobile',title:'Export to Thunderbird mobile',icon:'mobile',desc:'Transfer your email accounts from this computer to Thunderbird on your phone using a QR code.',rows:[
+ {id:'mobile',title:'Set up mobile',icon:'mobile',desc:'Transfer your email accounts from this computer to Thunderbird on your phone using a QR code.',rows:[
   {label:'Install Thunderbird on your phone first',type:'links',links:['Google Play'],kw:'android app get'},
   {type:'mobileflow'}]}
+],
+sync:[
+ {id:'sync',title:'Sync',icon:'sync',desc:'Synchronize your accounts, address books, calendars, add-ons, and settings across all your devices.',rows:[
+  {label:'Sync account',type:'syncstatus',kw:'sign in firefox account'},
+  {k:'syncDevice',label:'Device name',type:'input',show:()=>S.syncIn},
+  {label:'Syncing ON',type:'btns',btns:['Sync Now','Manage account'],show:()=>S.syncIn},
+  {type:'sub',label:'You are currently syncing these items:',show:()=>S.syncIn},
+  {label:'Synced items',type:'checks',opts:[['syncAccts','Email Accounts'],['syncAddr','Address Books'],['syncCal','Calendars'],['syncIdent','Identities'],['syncPw','Passwords']],inline:1,show:()=>S.syncIn,kw:'sync items'},
+  {label:'Email account details',type:'checks',opts:[['syncSrv','Server configuration'],['syncFilters','Filters'],['syncKeys','OpenPGP - S/MIME']],inline:1,show:()=>S.syncIn&&S.syncAccts},
+  {label:'About syncing',type:'links',links:['Learn more…']},
+  {type:'sub',label:'Using Thunderbird on your phone?'},
+  {label:'Moving your accounts to a phone is separate from syncing.',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile'}]}
 ],
 composition:[
  {title:'Writing and formatting',icon:'pen',rows:[
@@ -429,7 +513,7 @@ composition:[
   {type:'sub',label:'Line and paragraph spacing'},
   {k:'paraSpacing',label:'Pressing Enter starts a new paragraph with extra spacing',type:'toggle',kw:'enter line break'},
   {type:'sub',label:'Send format'},
-  {k:'sendFormat',label:'Sending format',type:'radios',cards:1,rec:'auto',opts:[['auto','Automatic','Send formatted text if you add styles (like bold or links), or plain text if you don’t.'],['both','Both rich text (HTML) and plain text','Always sends both versions so the recipient’s email app can choose which one to display.'],['html','Rich text (HTML) only','Keeps custom fonts, colors, and images, but some older email apps may not display it properly.'],['plain','Plain text only','Removes all formatting, colors, and images. Best for simple text emails that work everywhere.']],kw:'html plain text'},
+  {k:'sendFormat',label:'Sending format',type:'sendfmt',opts:[['auto','Based on formatting','Sends formatted text (HTML) if you add styles (like bold or links), or plain text if you don’t.','pen'],['both','Both rich text and plain text','Always sends both versions (rich text in HTML, and plain text) so the recipient’s email app can choose which one to display.','copy'],['html','Rich text only','Sends rich text in HTML. Keeps custom fonts, colors, and images, but some older email apps may not display it properly.','code'],['plain','Plain text only','Removes all formatting, colors, and images. Best for simple text emails that work everywhere.','textaa']],kw:'html plain text both automatic based on formatting'},
   {type:'sub',label:'Forwarding'},
   {k:'forwardAs',label:'Forward messages as',type:'radios',opts:[['inline','Inside the message (inline)'],['attach','As attachment']]},
   {k:'addFileType',label:'Add file type to attached messages',type:'toggle',show:()=>S.forwardAs==='attach'},
@@ -497,16 +581,18 @@ privacy:[
   {type:'sub',label:'Security devices'},
   {label:'Hardware tokens and modules',type:'btn',btn:'Security Devices…'}]},
  {title:'Encryption',icon:'lock',rows:[
-  {type:'sub',label:'OpenPGP',desc:'Encrypted emails can only be read by you and your recipients.'},
-  {label:'Automatic use of encryption',type:'checks',opts:[['e2eeAuto','Automatically turn on encryption when possible','Thunderbird turns encryption on if valid accepted keys or certificates are available for all recipients.'],['e2eeAutoOff','Automatically turn off encryption when recipients change and encryption is no longer possible'],['e2eeNotify','Show a notification whenever encryption is turned off automatically']],kw:'openpgp pgp smime'},
-  {type:'sub',label:'Key management',desc:'A keyserver receives and then serves existing public keys to users. It lets you publish your public key and find and refresh keys of others.'},
-  {label:'Keyservers in use',type:'text',value:'keys.openpgp.org, keyserver.ubuntu.com'},
+  {type:'sub',label:'Email end-to-end encryption',desc:'Encrypted emails can only be read by you and your recipients.'},
+  {label:'Set up email accounts and identities for end-to-end encryption in the Account settings.',type:'link',to:'accounts',btn:'Account settings',kw:'e2ee openpgp smime'},
+  {type:'sub',label:'Automatic use of encryption',desc:'Thunderbird can turn encryption on if valid accepted keys or certificates are available for all recipients of a message.'},
+  {label:'Automatic use of encryption',type:'checks',opts:[['e2eeAuto','Automatically turn on encryption when possible'],['e2eeAutoOff','Automatically turn off encryption when recipients change and encryption is no longer possible'],['e2eeNotify','Show a notification whenever encryption is turned off automatically']],kw:'openpgp pgp smime'},
+  {type:'note',text:'Note: You can also manually turn encryption on or off while writing a message. Replying to an encrypted messages always turns on encryption.'},
+  {type:'sub',label:'OpenPGP Keyservers',desc:'A keyserver receives and then serves existing public keys to users. It allows you to publish your public key and find and refresh keys of others.'},
+  {label:'Use the following keyservers:',type:'text',value:'keys.openpgp.org, keyserver.ubuntu.com',kw:'keyserver'},
   {label:'Keyserver list',type:'btns',btns:['Add…','Reset Server List']},
-  {type:'sub',label:'Web address protection (secure DNS)',desc:'Secure DNS encrypts the lookup requests Thunderbird sends to find websites, keeping your browsing activity private from any network monitoring.'},
-  {type:'banner',id:'dohOff',fixed:1,kind:'warning',title:'Secure DNS is off',text:'Your network provider can see which websites Thunderbird looks up.',show:()=>S.doh==='off'},
-  {k:'doh',label:'Enable DNS over HTTPS using',type:'radios',cards:1,rec:'default',opts:[['default','Automatic protection','Thunderbird automatically encrypts address lookups when available. Switches back to standard network lookups if there’s a connection issue or if a VPN or managed network requires it.'],['increased','Increased protection','Always uses your chosen provider. Uses a standard connection only if the secure provider fails.'],['maximum','Maximum protection','Strictly requires encrypted DNS. Websites will not load if the secure connection fails.'],['off','Off','Uses your standard internet provider or network to look up web addresses.']],kw:'doh dns'},
-  {k:'dohProvider',label:'Choose provider',type:'select',opts:[['cloudflare','Cloudflare (Default)'],['nextdns','NextDNS'],['custom','Custom']],show:()=>S.doh!=='off'},
-  {k:'dohWarn',label:'Warn if a third party actively prevents secure DNS',type:'toggle',show:()=>S.doh!=='off'}]},
+  {type:'sub',label:'Secure DNS (DNS over HTTPS)',desc:'Whenever Thunderbird opens a link or loads an image, it looks up the website’s address. Secure DNS hides those lookups from anyone watching your network, such as public Wi-Fi.'},
+  {type:'banner',id:'dohOff',fixed:1,kind:'warning',title:'Secure DNS is off',text:'Anyone on your network, like café Wi-Fi, can see which websites Thunderbird connects to.',show:()=>S.doh==='off'},
+  {k:'doh',label:'How much protection do you want?',type:'radios',cards:1,rec:'default',opts:[['default','Automatic protection','Hides lookups when it can. If that causes a problem, like on a work network, it falls back to normal lookups.'],['increased','Increased protection','Always uses the provider you choose. Falls back to a normal connection only if the provider can’t be reached.','provider'],['maximum','Maximum protection','Only ever uses secure lookups. Websites and images won’t load if the secure connection fails.','provider'],['off','Off','Uses your internet provider’s normal lookups.']],kw:'doh dns'},
+  {k:'dohWarn',label:'Warn me if my network blocks secure lookups',type:'toggle',show:()=>S.doh!=='off'}]},
  {title:'Network',icon:'globe',rows:[
   {type:'sub',label:'Connection settings',desc:'Control how Thunderbird connects to the internet.'},
   {label:'Proxy and network',type:'btn',btn:'Connection options…'},
@@ -516,68 +602,78 @@ privacy:[
   {label:'Offline settings',type:'btn',btn:'Offline…'}]}
 ],
 calendar:[
- {title:'View and work week',icon:'cal',rows:[
-  {type:'sub',label:'Work week and hours'},
-  {label:'Days in my work week',type:'checks',opts:[['wd1','Monday'],['wd2','Tuesday'],['wd3','Wednesday'],['wd4','Thursday'],['wd5','Friday'],['wd6','Saturday'],['wd0','Sunday']],inline:1,kw:'weekdays'},
-  {k:'dayStart',label:'Work day starts',type:'select',opts:HOURS.slice(0,5)},
-  {k:'dayEnd',label:'Work day ends',type:'select',opts:HOURS.slice(5)},
-  {type:'sub',label:'Calendar view options'},
-  {k:'calView',label:'Open calendar in',type:'select',opts:[['day','Day view'],['week','Week view'],['multiweek','Multiweek view'],['month','Month view']]},
-  {k:'weekNums',label:'Show week numbers',type:'toggle'},
-  {type:'sub',label:'Date and time display formats'},
-  {k:'localeSrc',label:'Format dates and times using',type:'radios',opts:[['app','Application locale: English (US)'],['os','Regional settings locale: English (UK)']]},
-  {k:'clock',label:'Clock',type:'seg',opts:[['12','12-hour'],['24','24-hour']]}]},
- {title:'Event and task defaults',icon:'cal',rows:[
+ {id:'calgen',title:'General',icon:'cal',rows:[
+  {k:'dateFmt',label:'Date Text Format',type:'select',opts:[['long','Long: Wednesday, November 4, 2026'],['short','Short: 11/4/2026']],kw:'date format'},
+  {k:'tzMode',label:'Timezone',type:'radios',opts:[['auto','Automatically detect timezone'],['manual','Manually set timezone']],kw:'time zone'},
+  {k:'tzValue',label:'Timezone',type:'select',opts:[['America/Los_Angeles','Los Angeles (America/Los_Angeles)'],['America/New_York','New York (America/New_York)'],['Europe/London','London (Europe/London)'],['Europe/Berlin','Berlin (Europe/Berlin)'],['Asia/Tokyo','Tokyo (Asia/Tokyo)'],['Australia/Sydney','Sydney (Australia/Sydney)']],show:()=>S.tzMode==='manual',kw:'time zone'},
+  {k:'weekStart',label:'Start the week on',type:'select',opts:[['0','Sunday'],['1','Monday'],['2','Tuesday'],['3','Wednesday'],['4','Thursday'],['5','Friday'],['6','Saturday']]},
+  {k:'weekNums',label:'Show week number in views and minimonth',type:'toggle'},
+  {label:'Workweek days',type:'checks',opts:[['wd0','Sun'],['wd1','Mon'],['wd2','Tue'],['wd3','Wed'],['wd4','Thu'],['wd5','Fri'],['wd6','Sat']],inline:1,kw:'weekdays'}]},
+ {title:'Day and Week Views',icon:'cal',rows:[
+  {k:'visHours',label:'Show hours at a time',type:'counter',min:1,max:24,help:'Between 1 and 24 hours'},
+  {k:'dayStart',label:'Day starts at',type:'select',opts:HRS},
+  {k:'dayEnd',label:'Day ends at',type:'select',opts:HRS},
+  {k:'showLoc',label:'Show location',type:'toggle'}]},
+ {title:'Multiweek View',icon:'cal',rows:[
+  {k:'multiWeeks',label:'Number of weeks to show (including previous weeks)',type:'select',opts:WKS},
+  {k:'prevWeeks',label:'Previous weeks to show',type:'select',opts:[['0','none']].concat(WKS)}]},
+ {title:'Today Pane',icon:'cal',rows:[
+  {k:'agendaDays',label:'The agenda shows',type:'select',opts:[['5','5 days'],['7','7 days'],['14','14 days'],['21','21 days'],['28','28 days']],kw:'agenda'}]},
+ {title:'Events and Tasks',icon:'task',rows:[
   {type:'betalink',k:'newCalDialog',label:'New calendar event dialog',desc:'A redesigned dialog for viewing and editing events.'},
-  {type:'sub',label:'Default event duration'},
-  {k:'evtDuration',label:'New events last',type:'select',opts:[['30','30 minutes'],['60','1 hour'],['90','1.5 hours'],['allday','All day']]},
-  {type:'sub',label:'Reminders'},
-  {k:'remindNew',label:'Add a reminder to new events',type:'toggle'},
-  {k:'remindMin',label:'Remind me before the event',type:'select',opts:[['5','5 minutes'],['15','15 minutes'],['30','30 minutes'],['60','1 hour']],show:()=>S.remindNew},
-  {type:'sub',label:'Snooze'},
-  {k:'snooze',label:'Snooze reminders for',type:'select',opts:[['5','5 minutes'],['10','10 minutes'],['15','15 minutes'],['30','30 minutes']]}]},
- {title:'Invitations and responses',icon:'mail',rows:[
-  {type:'sub',label:'Manage invitations'},
-  {k:'invAuto',label:'When I receive an invitation',type:'radios',opts:[['show','Show it in the message','You choose whether to add it to your calendar.'],['add','Add it to my calendar as tentative','The event appears right away and you can accept or decline later.']]},
-  {type:'sub',label:'RSVP'},
-  {k:'rsvp',label:'When I respond to an invitation',type:'radios',opts:[['always','Always send my response'],['ask','Ask me before sending'],['never','Never send a response']]},
-  {type:'sub',label:'Conflict warnings'},
-  {k:'conflictWarn',label:'Warn me when an event overlaps with another',type:'toggle'}]},
+  {k:'evtDuration',label:'Default Event and Task Length',type:'select',opts:DUR},
+  {k:'taskStart',label:'Start Date',desc:'Default start date for new tasks.',type:'select',opts:TSK},
+  {k:'taskDue',label:'Due Date',desc:'Default due date for new tasks.',type:'select',opts:TSK},
+  {k:'editInTab',label:'Edit events and tasks in a tab instead of in a dialog window.',type:'toggle'},
+  {k:'promptDelete',label:'Prompt before deleting events and tasks.',type:'toggle'}]},
+ {title:'Reminders',icon:'bell',rows:[
+  {type:'sub',label:'When a reminder is due:'},
+  {k:'calSound',label:'Play',type:'toggle'},
+  {k:'soundSrc',label:'Reminder sound',type:'radios',opts:[['default','Use default sound'],['file','Use the following sound file']],show:()=>S.calSound},
+  {type:'sound',key:'cal',label:'Sound file',show:()=>S.calSound&&S.soundSrc==='file',kw:'sound audio browse play upload'},
+  {label:'Default sound',type:'defplay',show:()=>S.calSound&&S.soundSrc!=='file'},
+  {k:'reminderDialog',label:'Show the reminder dialog',type:'toggle'},
+  {k:'missedReminders',label:'Show missed reminders for writable calendars',type:'toggle'},
+  {type:'sub',label:'Reminder Defaults'},
+  {k:'snooze',label:'Default Snooze Length',type:'select',opts:[['5','5 minutes'],['10','10 minutes'],['15','15 minutes'],['30','30 minutes'],['60','1 hour']]},
+  {k:'evAlarm',label:'Default reminder setting for events',type:'select',opts:[['on','On'],['off','Off']]},
+  {k:'evAlarmTime',label:'Default time a reminder is set before an event',type:'select',opts:[['5','5 minutes'],['15','15 minutes'],['30','30 minutes'],['60','1 hour'],['1440','1 day']],show:()=>S.evAlarm==='on'},
+  {k:'taskAlarm',label:'Default reminder setting for tasks',type:'select',opts:[['on','On'],['off','Off']]},
+  {k:'taskAlarmTime',label:'Default time a reminder is set before a task',type:'select',opts:[['5','5 minutes'],['15','15 minutes'],['30','30 minutes'],['60','1 hour'],['1440','1 day']],show:()=>S.taskAlarm==='on'}]},
  {title:'Notifications',icon:'bell',rows:[
-  {type:'sub',label:'Alarm style'},
-  {k:'alarmStyle',label:'When a reminder is due',type:'radios',opts:[['popup','Show a reminder window','Stays on screen until you dismiss or snooze it.'],['notify','Show a notification only','A system notification that disappears on its own.']]},
-  {type:'sub',label:'Missed reminders'},
-  {k:'missedStart',label:'Show missed reminders when Thunderbird starts',type:'toggle'},
-  {k:'missedFor',label:'Look back',type:'select',opts:[['1','1 day'],['7','7 days'],['30','30 days']],show:()=>S.missedStart},
-  {type:'sub',label:'Sounds'},
-  {k:'calSound',label:'Play a sound for reminders',type:'toggle'},
-  {k:'calSoundFile',label:'Reminder sound',type:'select',opts:[['chime','Chime'],['bell','Soft bell'],['pulse','Pulse']],show:()=>S.calSound}]},
+  {type:'note',text:'Notifications can be customized for each calendar in the calendar’s properties window.'}]},
  {title:'Categories',icon:'cal',rows:[
-  {type:'sub',label:'List of categories',desc:'Categories help you group and color-code events.'},
   {label:'Work',type:'cat',color:'#0a6bd8'},
   {label:'Personal',type:'cat',color:'#2a9d5c'},
   {label:'Birthdays',type:'cat',color:'#d3307f'},
   {label:'Travel',type:'cat',color:'#d9610a'},
-  {label:'New category',type:'btn',btn:'Add category…'}]}
+  {label:'New category',type:'btn',btn:'New Category'}]}
 ],
 chat:[
  {title:'Status',icon:'chat',rows:[
   {type:'sub',label:'Startup'},
-  {k:'chatStartup',label:'When Thunderbird starts',type:'radios',opts:[['connect','Connect my chat accounts automatically'],['offline','Keep my chat accounts offline']]},
-  {type:'sub',label:'Away status'},
-  {k:'idle',label:'Let my contacts know that I am idle',type:'toggle'},
-  {k:'idleMin',label:'Set me as idle after',type:'counter',min:1,max:120,help:'Minutes of inactivity',show:()=>S.idle},
-  {k:'awayMsg',label:'Away status message',type:'input'},
+  {k:'chatStartup',label:'When Thunderbird starts:',type:'radios',opts:[['connect','Connect my chat accounts automatically'],['offline','Keep my Chat Accounts offline']]},
+  {type:'sub',label:'Idle and away'},
+  {k:'idle',label:'Let my contacts know that I am Idle',type:'toggle'},
+  {k:'idleMin',label:'Idle after',type:'counter',min:1,max:120,help:'minutes of inactivity',show:()=>S.idle},
+  {k:'idleAway',label:'and set my status to Away with this status message',type:'toggle',show:()=>S.idle},
+  {k:'awayMsg',label:'Away status message',type:'input',show:()=>S.idle&&S.idleAway},
+  {type:'sub',label:'Conversations'},
   {k:'typing',label:'Send typing notifications in conversations',type:'toggle'}]},
  {title:'Notifications',icon:'bell',rows:[
-  {type:'sub',label:'When messages directed at you arrive'},
+  {type:'sub',label:'When messages directed at you arrive:'},
   {k:'chatNotify',label:'Show a notification',type:'radios',opts:[['all','With sender’s name and message preview'],['name','With sender’s name only'],['none','Without any info']]},
-  {k:'chatFlash',label:'Flash the taskbar item',type:'toggle'},
-  {k:'chatSound',label:'Play a sound',type:'toggle'}]},
+  {type:'notifprev'},
+  {k:'chatFlash',label:'Animate dock icon',type:'toggle',show:()=>S.os==='mac'},
+  {k:'chatFlash',label:'Flash the taskbar item',type:'toggle',show:()=>S.os!=='mac'},
+  {k:'chatSound',label:'Play a sound',type:'toggle'},
+  {k:'chatSoundSrc',label:'Sound',type:'radios',opts:[['system','Default system sound for new mail'],['custom','Use the following sound file']],show:()=>S.chatSound},
+  {type:'sound',key:'chat',label:'Sound file',show:()=>S.chatSound&&S.chatSoundSrc==='custom',kw:'sound audio browse play upload'},
+  {label:'Default sound',type:'defplay',show:()=>S.chatSound&&S.chatSoundSrc!=='custom'}]},
  {title:'Styling',icon:'palette',rows:[
-  {type:'sub',label:'Conversation theme'},
   {k:'chatTheme',label:'Theme',type:'select',opts:[['mail','Thunderbird'],['bubbles','Bubbles'],['dark','Dark'],['paper','Paper Sheets'],['simple','Simple']]},
-  {k:'chatVariant',label:'Variant',type:'select',opts:[['default','Default'],['compact','Compact']]}]}
+  {k:'chatVariant',label:'Variant',type:'select',opts:[['default','Default'],['compact','Compact']]},
+  {type:'chatprev'}]}
 ],
 extensions:[
  {title:'Add-ons',icon:'puzzle',rows:[
@@ -590,10 +686,8 @@ extensions:[
   {label:'Add-on themes are managed here. Light or dark mode and accent colours are in Appearance.',type:'link',to:'appearance',btn:'Open Appearance'}]}
 ],
 accounts:[
- {title:'Your accounts',icon:'user',rows:[
-  {label:'Want these accounts on your phone?',desc:'Export them to Thunderbird on your phone with a QR code.',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile',kw:'phone android'},
-  {type:'acctpick',label:'Choose an account to change its settings',kw:'add remove account'}]},
  {title:'Account details',icon:'user',rows:[
+  {type:'acctpick',label:'Choose an account to change its settings',kw:'add remove account'},
   {type:'sub',label:'Identity'},
   {k:'acctName',label:'Account name',type:'input'},
   {k:'yourName',label:'Your name',type:'input',kw:'display name'},
@@ -624,15 +718,15 @@ accounts:[
   {k:'quote',label:'Automatically quote the original message when replying',type:'toggle'},
   {k:'replyPos',label:'Start my reply',type:'select',opts:[['below','Below the quote'],['above','Above the quote']],show:()=>S.quote},
   {k:'useSig',label:'Attach a signature to new messages',type:'toggle'}]},
- {title:'Junk',icon:'lock',rows:[
-  {k:'junkMove',label:'When messages are marked as spam',type:'select',opts:[['junk','Move to the Spam folder'],['delete','Delete immediately']],kw:'spam'},
+ {title:'Spam',icon:'lock',rows:[
+  {k:'junkMove',label:'When messages are marked as spam',type:'select',opts:[['junk','Move to the Spam folder'],['delete','Delete immediately']],kw:'spam junk'},
   {k:'junkLog',label:'Keep a log of automatic spam detection',type:'toggle'}]},
  {id:'storage',title:'Server sync and local storage',icon:'drives',desc:'How this account stays up to date with its mail server, and how much mail is kept on this computer. This does not move your accounts to a phone.',rows:[
   {k:'offlineKeep',label:'Keep messages for this account on this computer',type:'toggle',kw:'offline'},
   {k:'syncPeriod',label:'Keep messages from',type:'select',opts:[['all','All time'],['year','The last year'],['6mo','The last 6 months'],['month','The last month']],show:()=>S.offlineKeep},
   {k:'compactAuto',label:'Clean up folders automatically to free up storage',type:'toggle',kw:'compact'},
   {type:'sub',label:'Using Thunderbird on your phone?'},
-  {label:'Transfer this account to your phone with a QR code',type:'link',to:'accounts',focus:'mobile',btn:'Export to Thunderbird mobile'}]},
+  {label:'Transfer this account to your phone with a QR code',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile'}]},
  {title:'End-to-end encryption',icon:'lock',rows:[
   {k:'e2eeKey',label:'Personal OpenPGP key',type:'select',opts:[['none','No key selected'],['0x4A1F…C2D9','0x4A1F…C2D9']],kw:'pgp openpgp'},
   {label:'Keys',type:'btns',btns:['Add key…','Manage keys']},
@@ -645,10 +739,13 @@ general:[
   {label:'Use Thunderbird on your phone',desc:'Transfer your accounts with a QR code in a few steps.',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile',kw:'phone android'},
   {type:'sub',label:'Application language'},
   {k:'appLang',label:'Display language',desc:'Choose the language used for menus, buttons, and notifications.',type:'select',opts:LANGS,kw:'locale translation'},
-  {label:'More languages',type:'btn',btn:'Manage languages…'}]},
+  {label:'More languages',type:'btn',btn:'Manage languages…'},
+  {type:'sub',label:'Date and Time Formatting'},
+  {k:'localeSrc',label:'Format dates and times using',type:'radios',opts:[['app','Application locale: English (US)'],['os','Regional settings locale: English (UK)']]}]},
  {title:'Home and startup',icon:'gear',rows:[
   {type:'sub',label:'Startup behaviour'},
-  {label:'Tray behaviour',type:'checks',opts:[['tray','Move Thunderbird to the tray when it is closed'],['startTray','Start Thunderbird in the tray']],kw:'close tray minimize'},
+  {k:'tray',label:'When Thunderbird is closed, move it to the tray',type:'toggle',show:()=>S.os!=='mac',kw:'close tray minimize'},
+  {k:'startTray',label:'Start Thunderbird in the tray',type:'toggle',show:()=>S.os!=='mac',kw:'tray'},
   {type:'sub',label:'System integration'},
   {k:'defmail',label:'Always check to see if Thunderbird is the default email app when opened',type:'toggle',kw:'default client'},
   {label:'Default apps',type:'btn',btn:'Edit defaults…'},
@@ -670,7 +767,9 @@ general:[
   {label:'Temporary files',type:'btn',btn:'Clear temporary files'},
   {type:'sub',label:'Performance'},
   {k:'globalSearch',label:'Turn on search across all email accounts',type:'toggle',kw:'gloda global'},
-  {k:'plainResults',label:'Show search results as a plain list',type:'toggle'}]},
+  {k:'plainResults',label:'Show search results as a plain list',type:'toggle'},
+  {k:'osSearch',label:'Allow Spotlight to search messages',type:'toggle',show:()=>S.os==='mac',kw:'search integration'},
+  {k:'osSearch',label:'Allow Windows Search to search messages',type:'toggle',show:()=>S.os==='win',kw:'search integration'}]},
  {title:'About & updates',icon:'upload',rows:[
   {type:'sub',label:'Thunderbird updates'},
   {type:'banner',id:'upToDate',fixed:1,kind:'success',title:'Thunderbird is up to date',text:'You have the latest version (150.0). Last checked today.'},
@@ -706,7 +805,7 @@ appearance:[
   {type:'sub',label:'Scrolling behaviour'},
   {k:'autoscroll',label:'Enable auto-scrolling',type:'toggle'},
   {k:'smooth',label:'Use smooth scrolling',type:'toggle'},
-  {k:'scrollbars',label:'Always show scrollbars',type:'toggle'},
+  {k:'scrollbars',label:'Always show scrollbars',type:'toggle',show:()=>S.os==='linux'},
   {k:'hscroll',label:'Allow horizontal scroll in table view',type:'toggle'},
   {type:'sub',label:'Performance and motion'},
   {k:'gpu',label:'Use graphics acceleration for smoother scrolling and performance',type:'toggle',kw:'gpu'}]},
@@ -717,8 +816,9 @@ appearance:[
   {type:'preview',label:'Preview'},
   {type:'sub',label:'Sorting and threading',desc:'Select default sorting and threading options for new folders'},
   {k:'thread',label:'Default Threading',type:'select',opts:[['unthreaded','Unthreaded'],['threaded','Threaded'],['grouped','Grouped by Sort']]},
-  {k:'sortBy',label:'Sort messages by',type:'select',opts:[['date','Date'],['subject','Subject'],['from','From'],['size','Size'],['priority','Priority'],['status','Status'],['tags','Tags'],['attachments','Attachments'],['recipient','Recipient'],['account','Account']]},
+  {k:'sortBy',label:'Sort messages by',type:'select',opts:[['date','Date'],['subject','Subject'],['from','From'],['id','ID'],['thread','Thread'],['priority','Priority'],['status','Status'],['size','Size'],['star','Star'],['unread','Read'],['recipient','Recipient'],['location','Location'],['tags','Tags'],['spam','Spam Status'],['attachments','Attachments'],['account','Account'],['received','Order Received'],['correspondents','Correspondents']]},
   {k:'sortOrder',label:'Default sort order',type:'select',opts:[['top','Newest messages at the top'],['bottom','Newest messages at the bottom']]},
+  {type:'sortprev',label:'Preview',kw:'sort threading thread order example'},
   {label:'Apply these view settings to',type:'btns',btns:['All folders and subfolders','Select folders…']}]}
 ],
 beta:[
@@ -728,23 +828,27 @@ beta:[
   {label:'Where this appears: message list settings',type:'link',to:'appearance',btn:'Open Appearance'},
   {type:'sub',label:'New calendar event dialog'},
   {k:'newCalDialog',label:'View calendar events in the new dialog',desc:'New calendar dialog for viewing events',type:'toggle',kw:'calendar'},
-  {label:'Event and task defaults, reminders and invitations',type:'link',to:'calendar',btn:'Open Calendar settings',kw:'calendar'}]}
+  {label:'Events and tasks, reminders and categories',type:'link',to:'calendar',btn:'Open Calendar settings',kw:'calendar'}]}
 ],
 notifications:[
- {title:'App notifications and sounds',icon:'bell',rows:[
-  {type:'sub',label:'Sounds'},
-  {k:'sound',label:'Turn on notification sounds',type:'toggle',kw:'audio chime'},
-  {type:'file',label:'Upload audio file',kw:'sound audio wav mp3 browse play'},
-  {type:'sub',label:'Icons'},
-  {k:'notifyMail',label:'Turn on notifications for new emails',type:'toggle',kw:'alert new mail desktop'},
-  {label:'Icons and alerts',type:'buttons',kw:'badge tray alert'},
+ {title:'App alerts and sounds',icon:'bell',rows:[
+  {type:'sub',label:'When a new message arrives:'},
+  {label:'App badges and notifications',type:'iconopts',kw:'badge dock tray icon app icon options'},
+  {k:'notifyMail',label:'Show an alert for new emails',type:'alertopt',kw:'alert new mail desktop notification customize'},
+  {k:'trayUnread',label:'Show a tray icon for unread messages',desc:'Recommended when using small taskbar buttons',type:'toggle',show:()=>S.os==='win'},
+  {k:'sound',label:'Play the following sound file:',type:'toggle',show:()=>S.os==='mac',kw:'sound audio chime'},
+  {type:'sound',key:'notif',label:'Sound file',dis:()=>!S.sound,show:()=>S.os==='mac',kw:'sound audio wav mp3 browse play upload select'},
+  {k:'sound',label:'Play a sound',type:'toggle',show:()=>S.os!=='mac',kw:'sound audio chime'},
+  {k:'notifSoundSrc',label:'Sound',type:'radios',opts:[['default','Default system sound for new mail'],['custom','Use custom sound for alerts']],show:()=>S.os!=='mac'&&S.sound},
+  {type:'sound',key:'notif',label:'Sound file',show:()=>S.os!=='mac'&&S.sound&&S.notifSoundSrc==='custom',kw:'sound audio wav mp3 browse play upload select'},
+  {label:'Default sound',type:'defplay',show:()=>S.os!=='mac'&&S.sound&&S.notifSoundSrc!=='custom'},
   {type:'sub',label:'Calendar notifications'},
-  {label:'Alarm style, missed reminders and sounds',type:'link',to:'calendar',btn:'Open Calendar settings',kw:'reminders alarms'},
+  {label:'Reminder sound, dialog and missed reminders',type:'link',to:'calendar',btn:'Open Calendar settings',kw:'reminders alarms'},
   {type:'sub',label:'Chat notifications'},
   {label:'Chat message alerts and sounds',type:'link',to:'chat',btn:'Open Chat settings',kw:'messages'}]}
 ]};
 
-CARDS.accounts.splice(1,0,...CARDS.mobile);delete CARDS.mobile;
+CARDS.accounts.splice(1,0,...CARDS.mobile,...CARDS.sync);delete CARDS.mobile;delete CARDS.sync;
 const ACCTS={
  work:{acctName:'Work',yourName:'Shiah Russell',email:'shiah@example.org',serverType:'IMAP',server:'imap.example.org',port:'993',security:'ssl',auth:'oauth',checkStart:true,checkMin:'10',smtp:'smtp.example.org',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:true,quote:true,replyPos:'below',useSig:true,junkMove:'junk',junkLog:false,offlineKeep:true,syncPeriod:'all',compactAuto:true,e2eeKey:'none',e2eeDefault:false,receipts:false},
  personal:{acctName:'Personal',yourName:'Shiah Russell',email:'shiah.russell@example.com',serverType:'POP3',server:'pop.example.com',port:'995',security:'ssl',auth:'password',checkStart:true,checkMin:'30',smtp:'smtp.example.com',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:false,quote:true,replyPos:'above',useSig:false,junkMove:'delete',junkLog:true,offlineKeep:true,syncPeriod:'all',compactAuto:false,e2eeKey:'0x4A1F…C2D9',e2eeDefault:true,receipts:false}
@@ -800,7 +904,7 @@ function banner(r){if(!r.fixed&&DIS.has(r.id))return'';
  return `<div class="row ban"><div class="banner ${r.kind}" role="${r.kind==='critical'?'alert':'status'}"><div class="bh">${ic(icn,22)}<b>${esc(r.title)}</b>${r.text&&!r.fixed?`<button class="bl" data-bn="${r.id}" data-bnact="toggle" aria-expanded="${open}">${open?'Show less':'Show more'}</button>`:''}${r.fixed?'':`<button class="ibtn" data-bn="${r.id}" data-bnact="close" aria-label="Dismiss">${ic('x',18)}</button>`}</div>${r.text&&open?`<p>${esc(r.text)}</p>`:''}${r.to&&(open||!r.text)?`<p class="bcta"><a class="lnk" href="#" data-nav="${r.to}">${esc(r.cta)}${ic('arrowRight',16)}</a></p>`:''}</div></div>`}
 function radiosHTML(r){
  const opts=r.opts.map(o=>{const chk=`<input type="radio" name="${r.k}" data-k="${r.k}" value="${esc(o[0])}"${S[r.k]===o[0]?' checked':''}>`;
-  if(r.cards)return `<label class="rcard"><span class="rh">${chk}<b>${hl(o[1])}</b>${r.rec===o[0]?'<span class="rec">Recommended</span>':''}</span>${o[2]?`<span class="rb">${hl(o[2])}</span>`:''}</label>`;
+  if(r.cards)return `<label class="rcard"><span class="rh">${chk}<b>${hl(o[1])}</b>${r.rec===o[0]?'<span class="badge">Recommended</span>':''}</span>${o[2]?`<span class="rb">${hl(o[2])}${o[3]==='provider'&&S[r.k]===o[0]?`<span class="prov"><small>Choose provider</small>${selw('data-k="dohProvider"',[['cloudflare','Cloudflare (Default)'],['nextdns','NextDNS'],['custom','Custom']],S.dohProvider,'Choose provider')}</span>`:''}</span>`:''}</label>`;
   return `<label class="opt">${chk}<span><b>${hl(o[1])}</b>${o[2]?`<small>${hl(o[2])}</small>`:''}</span></label>`}).join('');
  return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="${r.cards?'rcards':'opts'}" role="radiogroup" aria-label="${esc(r.label)}">${opts}</div></div>`}
 
@@ -811,10 +915,10 @@ function qrSVG(seed){const n=25;let x=(seed+1)*2654435761>>>0;const rnd=()=>{x^=
  for(let r=0;r<n;r++)for(let c=0;c<n;c++){let on;if(fin(r,c)){const a=r<7?0:n-7,b=c<7?0:n-7,rr=r-a,cc=c-b;on=rr===0||rr===6||cc===0||cc===6||(rr>=2&&rr<=4&&cc>=2&&cc<=4)}else on=rnd()>.52;if(on)cells+=`<rect x="${c}" y="${r}" width="1" height="1"/>`}
  return `<svg viewBox="-1 -1 ${n+2} ${n+2}" width="200" height="200" role="img" aria-label="Example QR code, not scannable"><rect x="-1" y="-1" width="${n+2}" height="${n+2}" fill="#fff"/><g fill="#15141a">${cells}</g></svg>`}
 function mobileFlow(){
- const ids=Object.keys(ACCTS),sel=selAccts(),total=Math.max(1,sel.length);
- if(MOB.step===0)return `<div class="row col"><div class="mobhead"><b>Select accounts to export</b><span class="note">${sel.length} of ${ids.length} selected</span>${sel.length<ids.length?`<a href="#" class="lnk" data-act="mobselall">Select all</a>`:''}</div><div class="mtiles" role="group" aria-label="Email accounts">${ids.map(id=>{const em=id===S.acct?S.email:ACCTS[id].email;return `<label class="mtile"><input type="checkbox" data-k="mob_${id}"${S['mob_'+id]?' checked':''}><span class="mav">${ic('mail',20)}</span><span class="mt"><b>${esc(em)}</b><small>${ACCTS[id].serverType} account</small></span></label>`}).join('')}</div><p class="note">Missing an account? Accounts not supported on Thunderbird for Android can’t be selected. <a href="#" class="lnk" data-act="stub">Learn which account types are supported</a></p><div><button class="btn primary" data-act="mobstart"${sel.length?'':' disabled'}>${ic('qr',18)}Export</button></div></div>`;
- if(MOB.step===1)return `<div class="row mobqr"><div class="qrbox">${qrSVG(MOB.qr)}<small class="note">Illustration only. This is not a real QR code.</small></div><div><p class="mobprog"><b>QR code ${MOB.qr} of ${total}</b></p><ol class="steps"><li>Open Thunderbird on your phone</li><li>Go to settings</li><li>Select <b>Import settings</b></li><li>Tap <b>Scan QR code</b> and hold your phone over this code</li></ol><div class="ctl" style="justify-content:flex-start"><button class="btn" data-act="mobback">Back</button><button class="btn primary" data-act="mobnext">${MOB.qr<total?'Next':'Done'}</button></div></div></div>`;
- return `<div class="row col"><div class="banner success" role="status"><div class="bh">${ic('checkCircle',22)}<b>Accounts exported. Continue on your phone.</b></div></div><div class="lbl"><b>Export summary</b><small>${total} QR code${total>1?'s':''} generated</small></div><ul class="sumlist">${sel.map(id=>`<li>${esc(acctName(id))}</li>`).join('')}</ul><div><button class="btn" data-act="mobreset">Export more accounts</button></div></div>`}
+ const ids=Object.keys(ACCTS),sel=selAccts(),total=Math.max(1,sel.length),em=id=>id===S.acct?S.email:ACCTS[id].email,pl=(n,w)=>n+' '+w+(n===1?'':'s');
+ if(MOB.step===0)return `<div class="row col"><div class="mobhead"><b>Select accounts to export</b><span class="note">${sel.length} of ${ids.length} selected</span>${sel.length<ids.length?`<a href="#" class="lnk" data-act="mobselall">Select all</a>`:''}</div><div class="mtiles" role="group" aria-label="Email accounts">${ids.map(id=>`<label class="mtile"><input type="checkbox" data-k="mob_${id}"${S['mob_'+id]?' checked':''}><span class="mav">${ic('mail',20)}</span><span class="mt"><b>${esc(em(id))}</b><small>${ACCTS[id].serverType} account</small></span></label>`).join('')}</div><p class="note">Missing an account? Accounts that are not supported on Thunderbird for Android cannot be selected. <a href="#" class="lnk" data-act="stub">Learn which account types are supported</a></p></div><div class="row col"><div class="mobhead"><b>Passwords</b></div><div class="opts"><label class="opt"><input type="checkbox" data-k="mobPw"${S.mobPw?' checked':''}><span><b>Include account passwords in the QR code</b></span></label></div><p class="note"><b>Note:</b> Accounts that use web sign-in (like Gmail or Yahoo), require authentication again on your device.</p></div><div class="row col"><p class="note"><b>Private transfer:</b> Your settings and passwords move directly from this computer to your phone. Nothing is sent to or stored on Mozilla servers.</p><p class="note"><b>Tip:</b> Keep your screen hidden from others while the QR code is displayed.</p><div><button class="btn primary" data-act="mobstart"${sel.length?'':' disabled'}>${ic('qr',18)}Export</button></div></div>`;
+ if(MOB.step===1)return `<div class="row mobqr"><div class="qrbox">${qrSVG(MOB.qr)}<small class="note">Illustration only. This is not a real QR code.</small></div><div><p class="mobprog"><b>${MOB.qr} of ${pl(total,'QR code')}</b></p><p>Scan ${total>1?'QR codes':'QR code'} with Thunderbird on your mobile device</p><ol class="steps"><li>Open Thunderbird on your mobile device</li><li>Go to settings</li><li>Select <b>Import settings</b></li><li>Tap <b>Scan QR code</b> and hold your phone over this code</li></ol><div class="ctl" style="justify-content:flex-start"><button class="btn" data-act="mobback">Back</button><button class="btn primary" data-act="mobnext">${MOB.qr<total?'Next':'Done'}</button></div></div></div>`;
+ return `<div class="row col"><div class="banner success" role="status"><div class="bh">${ic('checkCircle',22)}<b>Accounts exported. Continue on your mobile device.</b></div></div><div class="lbl"><b>Export summary</b><small>${pl(total,'QR code')} generated · ${S.mobPw?'Passwords included':'Passwords excluded'}</small></div><p class="note" style="margin:0">${pl(sel.length,'account')} exported:</p><ul class="sumlist">${sel.map(id=>`<li>${esc(acctName(id))}</li>`).join('')}</ul><div><button class="btn" data-act="mobreset">Export more accounts</button></div></div>`}
 function rerender(sel){const m=document.querySelector('main'),st=m.scrollTop;render();m.scrollTop=st;if(sel){const n=document.querySelector(sel);if(n)n.focus({preventScroll:true})}}
 function mobFocus(){const el=document.querySelector('#card-mobile .btn.primary:not(:disabled), #card-mobile input');if(el)el.focus({preventScroll:true})}
 function focusRow(k){const cd=document.getElementById('card-'+k);if(cd){cd.classList.add('hl');cd.scrollIntoView({block:'start'});setTimeout(()=>cd.classList.remove('hl'),2400);return}
@@ -825,12 +929,15 @@ function control(r){
   case 'toggle':return `<button class="sw" role="switch" aria-checked="${S[r.k]}" aria-label="${esc(r.label)}" data-k="${r.k}"></button>`;
   case 'select':return selw(`data-k="${r.k}"`,r.opts,S[r.k],r.label);
   case 'seg':return `<div class="seg" role="group" aria-label="${esc(r.label)}">${r.opts.map(o=>`<button data-k="${r.k}" data-v="${o[0]}" aria-pressed="${S[r.k]===o[0]}">${o[2]?ic(o[2],18):''}${o[1]}</button>`).join('')}</div>`;
-  case 'path':return `<div class="file" style="min-width:300px"><span class="has">${esc(S.dlpath)}</span><button class="btn" data-act="pickdir">${ic('upload',18)}Choose</button></div>`;
+  case 'path':return `<div class="file" style="min-width:300px"><span class="has">${esc(S.dlpath)}</span><button class="btn" data-act="pickdir">${ic('upload',18)}${S.os==='mac'?'Choose…':'Browse…'}</button></div>`;
   case 'text':return `<span style="color:var(--muted)">${r.get?r.get():r.value}</span>`;
   case 'input':return `<div class="field"><div class="inpw"><input class="inp" type="text" id="f-${r.k}" data-k="${r.k}" data-help="${esc(r.help||'')}" value="${esc(S[r.k])}" aria-label="${esc(r.label)}"></div></div>`;
   case 'counter':{const st=r.step||1;return `<div class="field"><div class="inpw ctr"><input class="inp" type="text" inputmode="numeric" id="f-${r.k}" data-k="${r.k}" data-min="${r.min}" data-max="${r.max}" data-help="${esc(r.help||'')}" value="${esc(S[r.k])}" aria-label="${esc(r.label)}"><div class="step"><button type="button" data-step="${st}" data-k2="${r.k}" aria-label="Increase">${ic('caretUp',14)}</button><button type="button" data-step="-${st}" data-k2="${r.k}" aria-label="Decrease">${ic('caretDown',14)}</button></div></div></div>`}
-  case 'acctpick':return selw('data-acct="1"',Object.keys(ACCTS).map(id=>[id,acctName(id)]),S.acct,'Account')+`<button class="btn primary" data-act="stub">${ic('plus',18)}Add account…</button><button class="btn danger" data-act="stub">Remove</button>`;
-  case 'cat':return `<span class="dot" style="background:${r.color}"></span><button class="btn" data-act="stub">Edit</button><button class="btn danger" data-act="stub">Delete</button>`;
+  case 'acctpick':return selw('data-acct="1"',Object.keys(ACCTS).map(id=>[id,acctName(id)]),S.acct,'Account')+`<button class="btn primary" data-act="stub">${ic('plus',18)}Add account…</button><button class="btn ghost-danger" data-act="stub">Remove</button>`;
+  case 'cat':return `<span class="dot" style="background:${r.color}"></span><button class="btn" data-act="stub">Edit</button><button class="btn ghost-danger" data-act="stub">Delete</button>`;
+  case 'iconopts':return `<button class="btn" data-act="appicons">App icon options…</button>`;
+  case 'alertopt':return `<button class="sw" role="switch" aria-checked="${S[r.k]}" aria-label="${esc(r.label)}" data-k="${r.k}"></button><button class="btn" data-act="alerts">Customize alerts…</button>`;
+  case 'defplay':return `<button class="btn" data-snd-play="def">${PL.key==='def'?ic('stop',18)+'Stop':ic('play',18)+'Play default sound'}</button>`;
   case 'btn':return `<button class="btn" data-act="stub">${r.btn}</button>`;
   case 'btns':return r.btns.map(b=>`<button class="btn" data-act="stub">${b}</button>`).join('');
   case 'links':return r.links.map(l=>`<a href="#" class="lnk" data-act="stub">${l}</a>`).join('');
@@ -841,7 +948,73 @@ function control(r){
 }
 const ACC=[['os','Follow operating system',null],['thunderbird','Thunderbird blue',['#3672d6','#6aa0f5']],['purple','Purple',['#7b3fe4','#b794ff']],['orange','Orange',['#b34e00','#ff9d5c']],['pink','Pink',['#c42a74','#ff7fb5']],['ink','Ink',['#3b3b4f','#c2c2d6']],['teal','Teal',['#077373','#4fd1c5']]];
 function isDark(){return S.theme==='dark'||(S.theme==='system'&&matchMedia('(prefers-color-scheme: dark)').matches)}
+const SPM=[
+ {id:1,t:'a',s:'Weekend plans',f:'Maya Chen',d:5,dl:'Yesterday 18:20',day:'Yesterday',sz:12,szl:'12 KB',pr:'Normal',at:'No',st:'Read',tg:'Personal',rc:'Me',ac:'Personal'},
+ {id:2,t:'a',s:'Re: Weekend plans',f:'Me',d:8,dl:'Today 9:05',day:'Today',sz:9,szl:'9 KB',pr:'Normal',at:'No',st:'Read',tg:'Personal',rc:'Maya Chen',ac:'Personal'},
+ {id:3,t:'a',s:'Re: Weekend plans',f:'Maya Chen',d:9,dl:'Today 9:41',day:'Today',sz:10,szl:'10 KB',pr:'Normal',at:'No',st:'Unread',tg:'Personal',rc:'Me',ac:'Personal'},
+ {id:4,t:'b',s:'Your prescription is ready',f:'Green Oak Pharmacy',d:7,dl:'Today 8:12',day:'Today',sz:6,szl:'6 KB',pr:'High',at:'No',st:'Unread',tg:'Important',rc:'Me',ac:'Personal'},
+ {id:5,t:'c',s:'Photos from the trip',f:'Jonas Weber',d:4,dl:'Yesterday 7:30',day:'Yesterday',sz:2400,szl:'2.4 MB',pr:'Normal',at:'Yes',st:'Read',tg:'Travel',rc:'Me',ac:'Work'},
+ {id:6,t:'d',s:'Lunch Thursday?',f:'Priya Nair',d:2,dl:'Mon 12:10',day:'Earlier this week',sz:4,szl:'4 KB',pr:'Normal',at:'No',st:'Read',tg:'Work',rc:'Me',ac:'Work'},
+ {id:7,t:'e',s:'Receipt for your order',f:'Corner Bookshop',d:1,dl:'Sun 16:02',day:'Earlier this week',sz:180,szl:'180 KB',pr:'Low',at:'Yes',st:'Read',tg:'Receipts',rc:'Me',ac:'Personal'}];
+SPM.forEach(m=>{m.sr=m.id%3===0?'Starred':'Not starred';m.lc=m.ac==='Work'?'Work / Inbox':'Personal / Inbox';m.sp='Not spam'});
+const SPK={id:['id','ID'],thread:['t','Thread'],star:['sr','Star'],unread:['st','Read'],location:['lc','Location'],spam:['sp','Spam Status'],received:['d','Order Received'],correspondents:['rc','Correspondents'],date:['d','Date'],subject:['s','Subject'],from:['f','From'],size:['sz','Size'],priority:['pr','Priority'],status:['st','Status'],tags:['tg','Tags'],attachments:['at','Attachments'],recipient:['rc','Recipient'],account:['ac','Account']};
+const PRK={High:3,Normal:2,Low:1};
+function sortPreview(){
+ const k=SPK[S.sortBy]||SPK.date,key=k[0],dir=S.sortOrder==='top'?-1:1;
+ const val=m=>key==='pr'?PRK[m.pr]:m[key];
+ const cmp=(a,b)=>{const x=val(a),y=val(b);const c=typeof x==='number'?x-y:String(x).localeCompare(String(y));return c?c*dir:(b.d-a.d)};
+ let L=SPM.slice().sort(cmp);
+ const showKey=(key==='s'||key==='f')?['dl','Date']:[key==='d'?'dl':key==='sz'?'szl':key,k[1]];
+ const row=(m,rep)=>`<div class="sp-row${m.st==='Unread'?' unread':''}${rep?' rep':''}"><span class="sp-s">${rep?'↳ ':''}${esc(m.s)}</span><span>${esc(m.f)}</span><span class="sp-k">${esc(m[showKey[0]])}</span></div>`;
+ let out='';
+ if(S.thread==='threaded'){const seen=[];L.forEach(m=>{if(!seen.includes(m.t))seen.push(m.t)});
+  seen.forEach(t=>{SPM.filter(m=>m.t===t).sort((a,b)=>a.d-b.d).forEach((m,i)=>out+=row(m,i>0))})}
+ else if(S.thread==='grouped'){const gl=m=>key==='d'?m.day:key==='s'?m.s[0].toUpperCase():key==='sz'?(m.sz<50?'Small (under 50 KB)':'Large'):key==='pr'?m.pr:String(m[key]);let last=null;
+  L.forEach(m=>{const g=gl(m);if(g!==last){out+=`<div class="sp-g">${esc(g)}</div>`;last=g}out+=row(m,false)})}
+ else L.forEach(m=>out+=row(m,false));
+ return `<div class="row col"><div class="lbl"><b>Preview</b><small>An example of how a few messages would be arranged with these settings.</small></div><div class="preview spv" role="group" aria-label="Sorting and threading example"><div class="sp-h"><span>Subject</span><span>From</span><span>${esc(showKey[1])}</span></div>${out}</div></div>`}
+const SND={};
+const PL={key:null,stop:null,t0:0,dur:1,audio:null,timer:null};
+const fmtSize=b=>b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const fmtDur=d=>isFinite(d)&&d>0?Math.floor(d/60)+':'+String(Math.round(d%60)).padStart(2,'0'):'';
+function sndStop(){if(PL.stop){try{PL.stop()}catch(e){}}PL.stop=null;PL.audio=null;clearInterval(PL.timer);const k=PL.key;PL.key=null;return k}
+function sndRefresh(f){rerender(f?'[data-snd-play="'+f+'"]':null)}
+function sndPlay(key){
+ const was=sndStop();if(was===key){sndRefresh(key);return}
+ PL.key=key;const f=SND[key];
+ const done=()=>{if(PL.key===key){sndStop();sndRefresh()}};
+ if(!f||f.sample){
+  const ctx=new (window.AudioContext||window.webkitAudioContext)(),o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
+  o.type='sine';o.frequency.setValueAtTime(880,t);o.frequency.setValueAtTime(660,t+.35);
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.85);
+  o.connect(g);g.connect(ctx.destination);o.start();o.stop(t+.9);o.onended=done;PL.dur=.9;PL.t0=performance.now();
+  PL.stop=()=>{try{o.stop()}catch(e){}ctx.close()}
+ }else{
+  const a=new Audio(f.url);PL.audio=a;a.onended=done;a.onerror=()=>{done();toast('This file can’t be played in the browser')};a.play().catch(()=>done());PL.stop=()=>a.pause()
+ }
+ PL.timer=setInterval(()=>{const p=PL.audio?(PL.audio.currentTime/(PL.audio.duration||1)):(performance.now()-PL.t0)/1000/PL.dur;document.querySelectorAll('.prog i[data-k="'+key+'"]').forEach(i=>i.style.width=Math.min(100,p*100)+'%')},80);
+ sndRefresh(key)}
+function sndSet(key,file){
+ if(!/^audio\//.test(file.type)&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(file.name)){toast('Choose an audio file (MP3, WAV or OGG)');return}
+ if(PL.key===key)sndStop();if(SND[key]&&SND[key].url)URL.revokeObjectURL(SND[key].url);
+ const url=URL.createObjectURL(file);SND[key]={name:file.name,size:file.size,url,dur:0,ext:(file.name.split('.').pop()||'').toUpperCase()};
+ const a=new Audio();a.preload='metadata';a.src=url;a.onloadedmetadata=()=>{if(SND[key]&&SND[key].url===url){SND[key].dur=a.duration;rerender()}};
+ rerender('[data-snd-play="'+key+'"]');flash()}
+function soundPicker(key,off){const f=SND[key],playing=PL.key===key,d=off?' disabled':'';
+ const inp=`<input type="file" accept="audio/*" class="sr" data-snd-input="${key}" tabindex="-1" aria-hidden="true">`;
+ if(!f)return `<div class="drop" data-drop="${key}">${ic('upload',24)}<div class="dt"><b>Drag an audio file here</b><span class="note">MP3, WAV or OGG</span></div><div class="ctl"><button class="btn" data-snd-browse="${key}"${d}>${S.os==='mac'?'Choose file…':'Browse files…'}</button><a href="#" class="lnk" data-snd-sample="${key}">Use a sample sound</a></div>${inp}</div>`;
+ return `<div class="sfile" data-drop="${key}"><button class="pbtn" data-snd-play="${key}" aria-label="${playing?'Stop':'Play'} ${esc(f.name)}"${d}>${ic(playing?'stop':'play',20)}</button><div class="sfi"><b>${esc(f.name)}</b><span class="note">${[f.sample?'Sample':f.ext,f.size?fmtSize(f.size):'',fmtDur(f.dur)].filter(Boolean).join(' · ')}</span><div class="prog"><i data-k="${key}"></i></div></div><div class="ctl"><button class="btn sm" data-snd-browse="${key}"${d}>Replace</button><button class="ibtn" data-snd-clear="${key}" aria-label="Remove ${esc(f.name)}"${d}>${ic('x',18)}</button></div>${inp}</div>`}
 function row(r){
+ if(r.type==='sound')return `<div class="row col"><div class="lbl strong"><b>${hl(r.label)}</b></div>${soundPicker(r.key,r.dis&&r.dis())}</div>`;
+ if(r.type==='notifprev'){const v=S.chatNotify;return `<div class="row col"><div class="lbl"><b>Preview</b></div><div class="notif"><span class="nic">${ic('chat',22)}</span><div><b>${v==='none'?'New chat message':'Florian'}</b>${v==='all'?'<span>Hi! :-)</span>':''}</div></div></div>`}
+ if(r.type==='chatprev'){const m=[['Florian','Hi! :-)',0],['Patrick','What’s up?',1],['Florian','I’m trying Thunderbird! ;-)',0]];return `<div class="row col"><div class="lbl"><b>Preview</b></div><div class="cpv ct-${S.chatTheme} cv-${S.chatVariant}" role="group" aria-label="Conversation preview">${m.map(x=>`<div class="cm${x[2]?' me':''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div></div>`}
+ if(r.type==='note')return `<div class="row" style="border-top:0"><p class="note">${hl(r.text)}</p></div>`;
+ if(r.type==='sortprev')return sortPreview();
+if(r.type==='sendfmt'){const v=S[r.k],o=r.opts.find(x=>x[0]===v)||r.opts[0];
+  const rich=`<b>Lunch on Thursday?</b><p>Hi Priya, <b>noon</b> works for me. Here is the <span class="lnk">menu</span>.</p>`,plain=`Lunch on Thursday?\n\nHi Priya, noon works for me. Here is the menu: https://example.org/menu`;
+  const card=(cap,body,cls)=>`<div class="sfc"><span class="cap">${cap}</span><div class="pv ${cls}">${body}</div></div>`;
+  const pv={auto:card('With formatting',rich,'rich')+card('Without formatting',plain,'plain'),both:card('Rich text version',rich,'rich')+card('Plain text version',plain,'plain'),html:card('Recipient sees',rich,'rich'),plain:card('Recipient sees',plain,'plain')}[v];
+  return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b></div><div class="sopts" role="radiogroup" aria-label="${esc(r.label)}">${r.opts.map(x=>{const on=v===x[0];return `<div class="sopt${on?' on':''}"><label class="sh"><input type="radio" name="${r.k}" data-k="${r.k}" value="${x[0]}"${on?' checked':''}>${ic(x[3],20)}<span>${esc(x[1])}</span>${x[0]==='auto'?'<span class="badge">Recommended</span>':''}</label>${on?`<div class="sb"><div class="sd">${esc(x[2])}</div><div class="sfp">${pv}</div></div>`:''}</div>`}).join('')}</div></div>`}
  if(r.type==='banner')return banner(r);
  if(r.type==='mobileflow')return mobileFlow();
  if(r.type==='betalink')return `<div class="row beta"><div class="lbl strong"><b>${hl(r.label)}</b><span class="badge">Beta</span><small>${hl(r.desc)}</small></div><div class="ctl"><span style="color:var(--muted)">${S[r.k]?'On':'Off'}</span><a href="#" class="lnk" data-nav="beta" data-focus="${r.k}">Try it in Beta features${ic('arrowRight',16)}</a></div></div>`;
@@ -849,7 +1022,7 @@ function row(r){
  if(r.type==='radios')return radiosHTML(r);
  if(r.type==='checks')return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="opts ${r.inline?'inline':''}" role="group" aria-label="${esc(r.label)}">${r.opts.map(o=>`<label class="opt"><input type="checkbox" data-k="${o[0]}"${S[o[0]]?' checked':''}><span><b>${hl(o[1])}</b>${o[2]?`<small>${hl(o[2])}</small>`:''}</span></label>`).join('')}</div></div>`;
  if(r.type==='swatches')return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b></div><div class="accs">${ACC.map(a=>`<button class="acc" data-accent="${a[0]}" aria-pressed="${S.accent===a[0]}"><i style="background:${a[2]?a[2][isDark()?1:0]:'conic-gradient(#0a6bd8,#d3307f,#d9610a,#0a8a8a,#0a6bd8)'}"></i>${a[1]}</button>`).join('')}</div></div>`;
- if(r.type==='preview'){const m=[['Maya Chen','Design review notes','Attached the updated settings flow for the review on Thursday, plus notes from the last round.','9:41',0],['Build bot','Nightly build #4812 passed','All 3,204 tests passed on Linux, macOS and Windows with no new warnings.','8:12',1],['Jonas Weber','Re: Translation strings','Thanks, merged into the branch. German and Dutch are ready for another look.','Tue',1],['Priya Nair','Lunch Thursday?','Same place as last time works for me, around noon if that suits everyone.','Mon',1]];
+ if(r.type==='preview'){const m=[['Maya Chen','Weekend plans','Are we still on for the farmers market on Saturday? I can pick you up around 9.','9:41',0],['Green Oak Pharmacy','Your prescription is ready','Your order is ready for pickup. We are open until 8 pm today.','8:12',1],['Jonas Weber','Re: Photos from the trip','Thanks for sending these! The one at the lake is my favourite.','Tue',1],['Priya Nair','Lunch Thursday?','Same place as last time works for me, around noon if that suits everyone.','Mon',1]];
   const tb=S.viewStyle==='table';
   const body=tb?`<div class="tbl hd"><span>Subject</span><span>From</span><span>Date</span></div>`+m.map(x=>`<div class="tbl ${x[4]?'read':''}"><span>${x[1]}</span><span>${x[0]}</span><span>${x[3]}</span></div>`).join('')
    :m.map(x=>`<div class="msg ${x[4]?'read':''}"><div class="av">${x[0].split(' ').map(w=>w[0]).join('')}</div><div class="t"><b>${x[1]}</b><small class="who">${x[0]}</small>${S.cardRows==='3'?`<small>${x[2]}</small>`:''}</div><time>${x[3]}</time></div>`).join('');
@@ -878,7 +1051,7 @@ function renderPane(){
  paintAll();
 }
 function renderNav(){
- document.getElementById('navlist').innerHTML=SECTIONS.map(s=>`<button class="navitem" data-nav="${s.id}" aria-label="${s.label}" ${(!query&&s.id===cur)?'aria-current="page"':''}>${ic(s.icon,22)}<span>${s.label}</span></button>`).join('');
+ document.getElementById('navlist').innerHTML=SECTIONS.map(s=>`<button class="navitem" data-nav="${s.id}" aria-label="${s.label}" ${(!query&&s.id===cur)?'aria-current="page"':''}>${ic(s.icon,22)}<span>${s.label}</span></button>`).join(''); 
 }
 function renderRail(){
  const b=[['mail','Mail',1],['book','Address book'],['cal','Calendar'],['task','Tasks'],['chat','Chat'],['sp'],['gear','Settings'],['collapse','Collapse sidebar']];
@@ -892,10 +1065,17 @@ function modal(html){const m=document.getElementById('modal'),app=document.query
  m.innerHTML=`<div class="pop" data-close><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgt"><button class="ibtn round dclose" data-done aria-label="Close">${ic('x',18)}</button>${html.replace('<h2>','<h2 id="dlgt">')}</div></div>`;
  app.inert=true;const f=m.querySelector('button');if(f)f.focus()}
 const miniToggle=(k,label)=>`<div class="row"><div class="lbl strong"><b>${label}</b></div><button class="sw" role="switch" aria-checked="${S[k]}" data-k="${k}" data-modal="1" aria-label="${label}"></button></div>`;
-function dlgIcons(){modal(`<h2>App icons</h2>${miniToggle('alertBadge','Show unread count on the app icon')}<div class="row"><div class="lbl strong"><b>Badge style</b></div><div class="seg">${[['count','Count'],['dot','Dot']].map(o=>`<button data-k="iconBadge" data-v="${o[0]}" data-modal="1" aria-pressed="${S.iconBadge===o[0]}">${o[1]}</button>`).join('')}</div></div><div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
-function dlgAlerts(){modal(`<h2>Modify alerts</h2>${miniToggle('alertSender','Show the sender')}${miniToggle('alertPreview','Show a message preview')}<div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
+function dlgIcons(){modal(`<h2>App icon options</h2>${miniToggle('alertBadge','Show unread count on the app icon')}<div class="row"><div class="lbl strong"><b>Badge style</b></div><div class="seg">${[['count','Count'],['dot','Dot']].map(o=>`<button data-k="iconBadge" data-v="${o[0]}" data-modal="1" aria-pressed="${S.iconBadge===o[0]}">${o[1]}</button>`).join('')}</div></div><div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
+function dlgAlerts(){modal(`<h2>Customize alerts</h2>${miniToggle('alertSender','Show the sender')}${miniToggle('alertPreview','Show a message preview')}<div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
 
 document.addEventListener('click',e=>{
+ const sb=e.target.closest('[data-snd-browse],[data-snd-play],[data-snd-clear],[data-snd-sample]');
+ if(sb){e.preventDefault();const d=sb.dataset;
+  if(d.sndBrowse){const i=sb.closest('[data-drop]').querySelector('input[type=file]');if(i)i.click()}
+  else if(d.sndPlay)sndPlay(d.sndPlay);
+  else if(d.sndClear){const k=d.sndClear;if(PL.key===k)sndStop();const f=SND[k];if(f&&f.url)URL.revokeObjectURL(f.url);delete SND[k];rerender();flash()}
+  else if(d.sndSample){const k=d.sndSample;SND[k]={name:'Soft chime',sample:true,size:0,dur:.9};rerender('[data-snd-play="'+k+'"]');flash()}
+  return}
  const bn=e.target.closest('[data-bnact]');
  if(bn){const id=bn.dataset.bn;if(bn.dataset.bnact==='close')DIS.add(id);else BN[id]=BN[id]===false;const m=document.querySelector('main'),st=m.scrollTop;renderPane();m.scrollTop=st;const bf=document.querySelector('[data-bn="'+id+'"][data-bnact="toggle"]');if(bf)bf.focus({preventScroll:true});return}
  const sp=e.target.closest('[data-step]');
@@ -930,21 +1110,25 @@ document.addEventListener('click',e=>{
   else return;
   save();
   if(t.dataset.modal){k==='iconBadge'||k==='alertBadge'?dlgIcons():dlgAlerts();return}
-  if(k==='sound'&&!S.sound)playing=null;
+  if(k==='sound'&&!S.sound&&PL.key==='notif')sndStop();
   rerender('[data-k="'+k+'"]'+(t.dataset.v!==undefined?'[data-v="'+t.dataset.v+'"]':''));flash()}
 });
 document.addEventListener('change',e=>{
  const tg=e.target;
+ if(tg.dataset&&tg.dataset.sndInput!==undefined){const f=tg.files&&tg.files[0];if(f)sndSet(tg.dataset.sndInput,f);return}
  if(tg.dataset&&tg.dataset.k&&(tg.type==='radio'||tg.type==='checkbox')){const k=tg.dataset.k;S[k]=tg.type==='radio'?tg.value:tg.checked;save();
   const q=tg.type==='radio'?`input[data-k="${k}"][value="${tg.value}"]`:`input[data-k="${k}"]`;const m=document.querySelector('main'),st=m.scrollTop;render();m.scrollTop=st;
   const n=document.querySelector(q);if(n)n.focus({preventScroll:true});flash();return}
  if(e.target.dataset&&e.target.dataset.acct){switchAcct(e.target.value);save();rerender('select[data-acct]');flash();return}
- const k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName==='SELECT'){S[k]=e.target.value;save();flash()}});
+ const k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName==='SELECT'){S[k]=e.target.value;save();if(['thread','sortBy','sortOrder','chatTheme','chatVariant'].includes(k))rerender('select[data-k="'+k+'"]');flash()}});
 document.addEventListener('input',e=>{
  if(e.target.type==='text'&&e.target.dataset.k){S[e.target.dataset.k]=e.target.value;save();paintField(e.target);flash();return}
  if(e.target.id==='q'){query=e.target.value.trim();document.getElementById('qx').hidden=!query;renderNav();renderPane();return}
 });
 document.addEventListener('click',e=>{if(e.target.closest('[data-skip]')){e.preventDefault();const h=document.querySelector('#pane h1');if(h)h.focus()}});
+document.addEventListener('dragover',e=>{const d=e.target.closest&&e.target.closest('[data-drop]');if(d){e.preventDefault();d.classList.add('over')}});
+document.addEventListener('dragleave',e=>{const d=e.target.closest&&e.target.closest('[data-drop]');if(d)d.classList.remove('over')});
+document.addEventListener('drop',e=>{const d=e.target.closest&&e.target.closest('[data-drop]');if(d){e.preventDefault();d.classList.remove('over');const f=e.dataTransfer.files[0];if(f)sndSet(d.dataset.drop,f)}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')modal('')});
 document.getElementById('ic-search').innerHTML=ic('search',20);document.getElementById('qx').innerHTML=ic('x',16);
 renderRail();render();
