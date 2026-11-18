@@ -100,6 +100,13 @@ h1:focus{outline:none}
 .subh+.row{border-top:0}
 .badge{margin-left:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:1px 8px}
 .row.beta{background:var(--accent-soft);border-radius:8px;border-top:0;padding:12px 14px;margin:12px -14px 4px}
+.row.beta{flex-wrap:wrap}
+.row.beta .btn{white-space:nowrap}
+.row.beta:last-child{margin-bottom:20px}
+.row.nt{border-top:0;padding:4px 0}
+.row.nt+.subh{margin-top:16px}
+.row.col+.row.nt{padding-top:0}
+.row.ban+.row{border-top:0}
 .row.beta+.row{border-top:0}
 .sopts{display:flex;flex-direction:column;gap:10px}
 .sopt{border:1px solid var(--line);border-radius:8px;background:var(--ctl);overflow:hidden}
@@ -147,6 +154,16 @@ h1:focus{outline:none}
 .sfi b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .prog{height:4px;border-radius:2px;background:var(--line);margin-top:8px;overflow:hidden}
 .prog i{display:block;height:100%;width:0;background:var(--accent-fill)}
+.row.col:has(>.shint),.row.col:has(>.preview),.row.col:has(>.notif),.row.col:has(>.cpv){border-top:0;padding-top:4px}
+.sopt .sb{border-top:0;padding-top:0}
+.shint{background:var(--head);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;max-width:480px;cursor:default}
+.shint .sbar{display:flex;gap:8px;align-items:center;background:var(--ctl);border-radius:4px;padding:8px 10px}
+.shint .sres b{display:block}
+.shint .hintline{display:flex;gap:10px;align-items:flex-start;background:var(--accent-soft);border-radius:6px;padding:10px 12px}
+.shint .hintline>div{flex:1}
+.shint .hintline svg:first-child{color:var(--accent)}
+.shint .lnk{pointer-events:none}
+.opt:has(input:disabled){opacity:.55;cursor:not-allowed}
 .sfp{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
 .sfc{border-radius:8px;background:var(--head);padding:12px 14px;min-width:0;cursor:default}
 .sfc .lnk{pointer-events:none}
@@ -333,11 +350,12 @@ fieldset.mob legend{padding:0 0 4px}
 
 /* dialog, toast, misc */
 .pop{position:fixed;inset:0;background:rgba(0,0,0,.4);display:grid;place-items:center;padding:16px;z-index:20}
-.dlg{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:8px;max-width:440px;width:100%;padding:20px 24px;display:flex;flex-direction:column;gap:2px}
-.dlg h2{margin:0 40px 4px 0;font-size:18px;font-weight:600}
-.dlg .dclose{position:absolute;right:12px;top:12px}
+.dlg{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:12px;max-width:520px;width:100%;padding:32px;display:flex;flex-direction:column;gap:2px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.dlg h2{margin:0 40px 4px 0;font-size:20px;font-weight:700}
+.dlg .dclose{position:absolute;right:20px;top:20px}
 .dlg .row{padding:12px 0}
-.dlg .foot{display:flex;justify-content:flex-end;margin-top:8px}
+.dlg .foot{display:flex;justify-content:flex-end;gap:24px!important;margin-top:24px}
+.dlg .foot .btn{min-width:128px;justify-content:center;font-weight:700}
 .empty,.stubpane{color:var(--muted);padding:48px 0;text-align:center}
 .crumb{font-size:12px;color:var(--muted);margin:0 0 6px}
 mark{background:var(--accent-soft);color:inherit;border-radius:3px}
@@ -429,7 +447,7 @@ P.envx=P.mail;
 const ic=(n,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="${P[n]}"/></svg>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-const DEF={acct:'work',accts:{},syncIn:false,os:'win',notifSoundSrc:'default',trayUnread:false,osSearch:false,idleAway:true,chatSoundSrc:'system',visHours:'9',showLoc:false,multiWeeks:'4',prevWeeks:'0',agendaDays:'14',taskStart:'none',taskDue:'none',editInTab:false,promptDelete:true,soundSrc:'default',reminderDialog:true,missedReminders:true,evAlarm:'on',evAlarmTime:'15',taskAlarm:'off',taskAlarmTime:'15',dateFmt:'long',tzMode:'auto',tzValue:'America/New_York',weekStart:'1',syncSrv:true,syncFilters:true,syncKeys:true,syncDevice:'Shiah’s computer',syncAccts:true,syncAddr:true,syncCal:true,syncIdent:true,syncPw:false,mob_work:true,mob_personal:false,mobPw:false,
+const DEF={acct:'work',accts:{},syncIn:false,searchEnc:false,applyScope:'all',os:'win',notifSoundSrc:'default',trayUnread:false,osSearch:false,idleAway:true,chatSoundSrc:'system',visHours:'9',showLoc:false,multiWeeks:'4',prevWeeks:'0',agendaDays:'14',taskStart:'none',taskDue:'none',editInTab:false,promptDelete:true,soundSrc:'default',reminderDialog:true,missedReminders:true,evAlarm:'on',evAlarmTime:'15',taskAlarm:'off',taskAlarmTime:'15',dateFmt:'long',tzMode:'auto',tzValue:'America/New_York',weekStart:'1',syncSrv:true,syncFilters:true,syncKeys:true,syncDevice:'Shiah’s computer',syncAccts:true,syncAddr:true,syncCal:true,syncIdent:true,syncPw:false,mob_work:true,mob_personal:false,mobPw:false,
  composeFont:'sys',composeSize:'12',ignoreSender:false,paraSpacing:false,sendFormat:'auto',forwardAs:'inline',addFileType:true,autosave:true,autosaveMin:'5',
  missingAtt:true,shareLarge:true,shareLargeMb:'5',openPdf:'preview',openImg:'preview',openDoc:'ask',
  collectOutgoing:true,collectTo:'collected',savedContacts:'personal',dirStartup:'last',acLocal:true,acNetwork:false,acServer:false,acDirServer:'none',
@@ -454,6 +472,7 @@ try{Object.assign(S,JSON.parse(localStorage.getItem('tb-settings-proto')||'{}'))
  const fix=o=>{for(const k in o){if(typeof o[k]==='string'&&m[o[k]])o[k]=m[o[k]];else if(o[k]&&typeof o[k]==='object')fix(o[k])}};fix(S)})();
 
 S.os='win';
+if(S.sortBy==='received')S.sortBy='date';
 const SECTIONS=[
  {id:'accounts',label:'Accounts',icon:'user'},
  {id:'general',label:'General',icon:'gear'},
@@ -585,7 +604,8 @@ privacy:[
   {label:'Set up email accounts and identities for end-to-end encryption in the Account settings.',type:'link',to:'accounts',btn:'Account settings',kw:'e2ee openpgp smime'},
   {type:'sub',label:'Automatic use of encryption',desc:'Thunderbird can turn encryption on if valid accepted keys or certificates are available for all recipients of a message.'},
   {label:'Automatic use of encryption',type:'checks',opts:[['e2eeAuto','Automatically turn on encryption when possible'],['e2eeAutoOff','Automatically turn off encryption when recipients change and encryption is no longer possible'],['e2eeNotify','Show a notification whenever encryption is turned off automatically']],kw:'openpgp pgp smime'},
-  {type:'note',text:'Note: You can also manually turn encryption on or off while writing a message. Replying to an encrypted messages always turns on encryption.'},
+  {type:'note',text:'Note: You can also manually turn encryption on or off while writing a message. Replying to an encrypted message always turns on encryption.'},
+  {type:'note',text:'Encrypted messages in search are managed in ',link:'Search and performance',to:'general',focus:'searchEnc'},
   {type:'sub',label:'OpenPGP Keyservers',desc:'A keyserver receives and then serves existing public keys to users. It allows you to publish your public key and find and refresh keys of others.'},
   {label:'Use the following keyservers:',type:'text',value:'keys.openpgp.org, keyserver.ubuntu.com',kw:'keyserver'},
   {label:'Keyserver list',type:'btns',btns:['Add…','Reset Server List']},
@@ -730,7 +750,15 @@ accounts:[
  {title:'End-to-end encryption',icon:'lock',rows:[
   {k:'e2eeKey',label:'Personal OpenPGP key',type:'select',opts:[['none','No key selected'],['0x4A1F…C2D9','0x4A1F…C2D9']],kw:'pgp openpgp'},
   {label:'Keys',type:'btns',btns:['Add key…','Manage keys']},
-  {k:'e2eeDefault',label:'Automatically turn on encryption when possible',type:'toggle'}]},
+  {type:'note',text:'Select a personal key to change the settings below.',show:()=>S.e2eeKey==='none'},
+  {type:'sub',label:'Default message encryption'},
+  {k:'e2eeDefMsg',label:'Default message encryption',type:'radios',hide:1,opts:[['no','Do not encrypt new messages by default'],['yes','Encrypt new messages by default']],dis:()=>S.e2eeKey==='none',kw:'encrypt default'},
+  {type:'note',text:'Encryption can be turned off for individual messages while writing emails.'},
+  {type:'note',text:'Automatic use of encryption is managed in ',link:'Email end-to-end encryption settings',to:'privacy',focus:'e2eeAuto'},
+  {type:'sub',label:'Digitally sign unencrypted messages',desc:'Proves to recipients that the message came from you and was not altered in transit. Encrypted messages are signed by default.'},
+  {label:'Digitally sign unencrypted messages',type:'checks',hide:1,opts:[['e2eeSign','Digitally sign unencrypted messages']],dis:()=>S.e2eeKey==='none',kw:'signature sign'},
+  {type:'sub',label:'Advanced encryption settings'},
+  {label:'Advanced encryption settings',type:'checks',hide:1,opts:[['e2eeAttachKey','Attach the public key for this identity when digitally signing messages'],['e2eeAutocrypt','Include this account’s public key in message headers (for Autocrypt compatibility)'],['e2eeSubject','Encrypt message subject line']],dis:()=>S.e2eeKey==='none',kw:'autocrypt public key subject'}]},
  {title:'Return receipts',icon:'mail',rows:[
   {k:'receipts',label:'When I send a message, always request a return receipt',type:'toggle'}]}
 ],
@@ -764,16 +792,17 @@ general:[
   {k:'storeFmt',label:'Storage format for new accounts',type:'select',opts:[['mbox','Single file per folder (mbox)'],['maildir','File per message (maildir)']],kw:'mbox maildir'},
   {k:'manualLimit',label:'Manually set storage limits for temporary files',type:'toggle'},
   {k:'clearOnClose',label:'Clear temporary files when Thunderbird closes',type:'toggle'},
-  {label:'Temporary files',type:'btn',btn:'Clear temporary files'},
-  {type:'sub',label:'Performance'},
+  {label:'Temporary files',type:'btn',btn:'Clear temporary files'}]},
+ {title:'Search and performance',icon:'search',rows:[
   {k:'globalSearch',label:'Turn on search across all email accounts',type:'toggle',kw:'gloda global'},
   {k:'plainResults',label:'Show search results as a plain list',type:'toggle'},
+  {label:'Search results',type:'checks',opts:[['searchEnc','Include encrypted messages in search results','Saves the words from encrypted messages in a search list on this computer. Anyone who can use this computer can read that list.']],kw:'global search encrypted privacy index'},
+  {type:'note',text:'Other encryption settings are in ',link:'Privacy and security',to:'privacy',focus:'e2eeAuto'},
   {k:'osSearch',label:'Allow Spotlight to search messages',type:'toggle',show:()=>S.os==='mac',kw:'search integration'},
   {k:'osSearch',label:'Allow Windows Search to search messages',type:'toggle',show:()=>S.os==='win',kw:'search integration'}]},
  {title:'About & updates',icon:'upload',rows:[
-  {type:'sub',label:'Thunderbird updates'},
   {type:'banner',id:'upToDate',fixed:1,kind:'success',title:'Thunderbird is up to date',text:'You have the latest version (150.0). Last checked today.'},
-  {label:'Thunderbird version',type:'text',value:'Version 150.0',kw:'about'},
+  {label:'Thunderbird version',type:'text',value:'150.0',kw:'about version'},
   {k:'updates',label:'Update settings',type:'radios',cards:1,rec:'auto',opts:[['auto','Automatically install updates','Keeps Thunderbird secure with the latest security fixes.'],['ask','Check for updates, but ask before installing','You decide when each update is installed.']],kw:'update install'},
   {label:'Update history',type:'btn',btn:'Show history'},
   {type:'sub',label:'Release settings'},
@@ -809,17 +838,19 @@ appearance:[
   {k:'hscroll',label:'Allow horizontal scroll in table view',type:'toggle'},
   {type:'sub',label:'Performance and motion'},
   {k:'gpu',label:'Use graphics acceleration for smoother scrolling and performance',type:'toggle',kw:'gpu'}]},
- {title:'Message list view style',icon:'mail',rows:[
+ {title:'Message list',icon:'mail',rows:[
   {type:'betalink',k:'convView',label:'Conversation view',desc:'Group related messages together in the message list.'},
   {k:'viewStyle',label:'Select view style',type:'seg',opts:[['table','Table view','table'],['card','Card view','cards']],kw:'layout cards table'},
   {k:'cardRows',label:'Row count',type:'seg',opts:[['3','3 rows'],['2','2 rows']],show:()=>S.viewStyle==='card',kw:'card view options'},
   {type:'preview',label:'Preview'},
-  {type:'sub',label:'Sorting and threading',desc:'Select default sorting and threading options for new folders'},
+  {type:'applyhint',show:()=>HINT},
+  ]},
+ {title:'Sorting and threading',icon:'table',desc:'Select default sorting and threading options for new folders',rows:[
   {k:'thread',label:'Default Threading',type:'select',opts:[['unthreaded','Unthreaded'],['threaded','Threaded'],['grouped','Grouped by Sort']]},
-  {k:'sortBy',label:'Sort messages by',type:'select',opts:[['date','Date'],['subject','Subject'],['from','From'],['id','ID'],['thread','Thread'],['priority','Priority'],['status','Status'],['size','Size'],['star','Star'],['unread','Read'],['recipient','Recipient'],['location','Location'],['tags','Tags'],['spam','Spam Status'],['attachments','Attachments'],['account','Account'],['received','Order Received'],['correspondents','Correspondents']]},
+  {k:'sortBy',label:'Sort messages by',type:'select',opts:[['date','Date and time received'],['subject','Subject'],['from','From'],['id','ID'],['thread','Thread'],['priority','Priority'],['status','Status'],['size','Size'],['star','Star'],['unread','Read'],['recipient','Recipient'],['location','Location'],['tags','Tags'],['spam','Spam Status'],['attachments','Attachments'],['account','Account'],['correspondents','Correspondents']]},
   {k:'sortOrder',label:'Default sort order',type:'select',opts:[['top','Newest messages at the top'],['bottom','Newest messages at the bottom']]},
   {type:'sortprev',label:'Preview',kw:'sort threading thread order example'},
-  {label:'Apply these view settings to',type:'btns',btns:['All folders and subfolders','Select folders…']}]}
+  {type:'applyhint',show:()=>HINT}]}
 ],
 beta:[
  {title:'Experimental features',icon:'flask',desc:'These features are still in development. They might change or not work as expected, so turn on only the ones you want to try.',rows:[
@@ -850,8 +881,8 @@ notifications:[
 
 CARDS.accounts.splice(1,0,...CARDS.mobile,...CARDS.sync);delete CARDS.mobile;delete CARDS.sync;
 const ACCTS={
- work:{acctName:'Work',yourName:'Shiah Russell',email:'shiah@example.org',serverType:'IMAP',server:'imap.example.org',port:'993',security:'ssl',auth:'oauth',checkStart:true,checkMin:'10',smtp:'smtp.example.org',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:true,quote:true,replyPos:'below',useSig:true,junkMove:'junk',junkLog:false,offlineKeep:true,syncPeriod:'all',compactAuto:true,e2eeKey:'none',e2eeDefault:false,receipts:false},
- personal:{acctName:'Personal',yourName:'Shiah Russell',email:'shiah.russell@example.com',serverType:'POP3',server:'pop.example.com',port:'995',security:'ssl',auth:'password',checkStart:true,checkMin:'30',smtp:'smtp.example.com',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:false,quote:true,replyPos:'above',useSig:false,junkMove:'delete',junkLog:true,offlineKeep:true,syncPeriod:'all',compactAuto:false,e2eeKey:'0x4A1F…C2D9',e2eeDefault:true,receipts:false}
+ work:{acctName:'Work',yourName:'Shiah Russell',email:'shiah@example.org',serverType:'IMAP',server:'imap.example.org',port:'993',security:'ssl',auth:'oauth',checkStart:true,checkMin:'10',smtp:'smtp.example.org',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:true,quote:true,replyPos:'below',useSig:true,junkMove:'junk',junkLog:false,offlineKeep:true,syncPeriod:'all',compactAuto:true,e2eeKey:'none',e2eeDefault:false,e2eeDefMsg:'no',e2eeSign:false,e2eeAttachKey:false,e2eeAutocrypt:true,e2eeSubject:true,receipts:false},
+ personal:{acctName:'Personal',yourName:'Shiah Russell',email:'shiah.russell@example.com',serverType:'POP3',server:'pop.example.com',port:'995',security:'ssl',auth:'password',checkStart:true,checkMin:'30',smtp:'smtp.example.com',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:false,quote:true,replyPos:'above',useSig:false,junkMove:'delete',junkLog:true,offlineKeep:true,syncPeriod:'all',compactAuto:false,e2eeKey:'0x4A1F…C2D9',e2eeDefault:true,e2eeDefMsg:'no',e2eeSign:false,e2eeAttachKey:false,e2eeAutocrypt:true,e2eeSubject:true,receipts:false}
 };
 const AFIELDS=Object.keys(ACCTS.work);
 function loadAcct(id){if(!ACCTS[id])id='work';Object.assign(S,ACCTS[id],(S.accts||{})[id]||{});S.acct=id}
@@ -903,10 +934,10 @@ function banner(r){if(!r.fixed&&DIS.has(r.id))return'';
  const icn={info:'info',success:'checkCircle',warning:'warnCircle',critical:'warning'}[r.kind];const open=r.fixed||BN[r.id]!==false;
  return `<div class="row ban"><div class="banner ${r.kind}" role="${r.kind==='critical'?'alert':'status'}"><div class="bh">${ic(icn,22)}<b>${esc(r.title)}</b>${r.text&&!r.fixed?`<button class="bl" data-bn="${r.id}" data-bnact="toggle" aria-expanded="${open}">${open?'Show less':'Show more'}</button>`:''}${r.fixed?'':`<button class="ibtn" data-bn="${r.id}" data-bnact="close" aria-label="Dismiss">${ic('x',18)}</button>`}</div>${r.text&&open?`<p>${esc(r.text)}</p>`:''}${r.to&&(open||!r.text)?`<p class="bcta"><a class="lnk" href="#" data-nav="${r.to}">${esc(r.cta)}${ic('arrowRight',16)}</a></p>`:''}</div></div>`}
 function radiosHTML(r){
- const opts=r.opts.map(o=>{const chk=`<input type="radio" name="${r.k}" data-k="${r.k}" value="${esc(o[0])}"${S[r.k]===o[0]?' checked':''}>`;
+ const opts=r.opts.map(o=>{const chk=`<input type="radio" name="${r.k}" data-k="${r.k}" value="${esc(o[0])}"${S[r.k]===o[0]?' checked':''}${r.dis&&r.dis()?' disabled':''}>`;
   if(r.cards)return `<label class="rcard"><span class="rh">${chk}<b>${hl(o[1])}</b>${r.rec===o[0]?'<span class="badge">Recommended</span>':''}</span>${o[2]?`<span class="rb">${hl(o[2])}${o[3]==='provider'&&S[r.k]===o[0]?`<span class="prov"><small>Choose provider</small>${selw('data-k="dohProvider"',[['cloudflare','Cloudflare (Default)'],['nextdns','NextDNS'],['custom','Custom']],S.dohProvider,'Choose provider')}</span>`:''}</span>`:''}</label>`;
   return `<label class="opt">${chk}<span><b>${hl(o[1])}</b>${o[2]?`<small>${hl(o[2])}</small>`:''}</span></label>`}).join('');
- return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="${r.cards?'rcards':'opts'}" role="radiogroup" aria-label="${esc(r.label)}">${opts}</div></div>`}
+ return `<div class="row col"><div class="lbl${r.hide?' sr':''}"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="${r.cards?'rcards':'opts'}" role="radiogroup" aria-label="${esc(r.label)}">${opts}</div></div>`}
 
 const MOB={step:0,qr:1};
 function selAccts(){return Object.keys(ACCTS).filter(id=>S['mob_'+id])}
@@ -937,6 +968,7 @@ function control(r){
   case 'cat':return `<span class="dot" style="background:${r.color}"></span><button class="btn" data-act="stub">Edit</button><button class="btn ghost-danger" data-act="stub">Delete</button>`;
   case 'iconopts':return `<button class="btn" data-act="appicons">App icon options…</button>`;
   case 'alertopt':return `<button class="sw" role="switch" aria-checked="${S[r.k]}" aria-label="${esc(r.label)}" data-k="${r.k}"></button><button class="btn" data-act="alerts">Customize alerts…</button>`;
+  case 'applybtn':return `<button class="btn" data-act="applyall">Apply to folders…</button>`;
   case 'defplay':return `<button class="btn" data-snd-play="def">${PL.key==='def'?ic('stop',18)+'Stop':ic('play',18)+'Play default sound'}</button>`;
   case 'btn':return `<button class="btn" data-act="stub">${r.btn}</button>`;
   case 'btns':return r.btns.map(b=>`<button class="btn" data-act="stub">${b}</button>`).join('');
@@ -973,6 +1005,7 @@ function sortPreview(){
   L.forEach(m=>{const g=gl(m);if(g!==last){out+=`<div class="sp-g">${esc(g)}</div>`;last=g}out+=row(m,false)})}
  else L.forEach(m=>out+=row(m,false));
  return `<div class="row col"><div class="lbl"><b>Preview</b><small>An example of how a few messages would be arranged with these settings.</small></div><div class="preview spv" role="group" aria-label="Sorting and threading example"><div class="sp-h"><span>Subject</span><span>From</span><span>${esc(showKey[1])}</span></div>${out}</div></div>`}
+let HINT=false,SRCHDIS=false;
 const SND={};
 const PL={key:null,stop:null,t0:0,dur:1,audio:null,timer:null};
 const fmtSize=b=>b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
@@ -1004,11 +1037,15 @@ function soundPicker(key,off){const f=SND[key],playing=PL.key===key,d=off?' disa
  const inp=`<input type="file" accept="audio/*" class="sr" data-snd-input="${key}" tabindex="-1" aria-hidden="true">`;
  if(!f)return `<div class="drop" data-drop="${key}">${ic('upload',24)}<div class="dt"><b>Drag an audio file here</b><span class="note">MP3, WAV or OGG</span></div><div class="ctl"><button class="btn" data-snd-browse="${key}"${d}>${S.os==='mac'?'Choose file…':'Browse files…'}</button><a href="#" class="lnk" data-snd-sample="${key}">Use a sample sound</a></div>${inp}</div>`;
  return `<div class="sfile" data-drop="${key}"><button class="pbtn" data-snd-play="${key}" aria-label="${playing?'Stop':'Play'} ${esc(f.name)}"${d}>${ic(playing?'stop':'play',20)}</button><div class="sfi"><b>${esc(f.name)}</b><span class="note">${[f.sample?'Sample':f.ext,f.size?fmtSize(f.size):'',fmtDur(f.dur)].filter(Boolean).join(' · ')}</span><div class="prog"><i data-k="${key}"></i></div></div><div class="ctl"><button class="btn sm" data-snd-browse="${key}"${d}>Replace</button><button class="ibtn" data-snd-clear="${key}" aria-label="Remove ${esc(f.name)}"${d}>${ic('x',18)}</button></div>${inp}</div>`}
+function msgCard(){const off=!S.searchEnc;const all=[['Your October invoice is ready','Green Oak Utilities','Oct 28',0],['Invoice #1042','Corner Bookshop','Oct 12',0],['Invoices for tax filing','Dana Okafor','Oct 3',1],['Re: Invoice question','Priya Nair','Sep 30',0],['Re: Updated invoice details','Dana Okafor','Sep 21',1]];const list=all.filter(x=>!x[3]||!off);
+ return `<section class="card"><header>${ic('search',22)}<h2>Messages</h2></header><p class="cdesc">Example of global search results for “${esc(query)}”. This part is not in Settings.</p><div class="rows">${list.map(x=>`<div class="row"><div class="lbl strong"><b>${x[3]?ic('lock',14)+' ':''}${esc(x[0])}</b><small>${esc(x[1])} · ${x[2]}</small></div></div>`).join('')}${off&&!SRCHDIS?`<div class="row beta" role="status"><div class="lbl strong"><b>Not finding what you’re looking for?</b><small>Encrypted messages aren’t included in search results.</small></div><div class="ctl"><a href="#" class="lnk" data-nav="general" data-focus="searchEnc">Change in Settings</a><button class="ibtn" data-act="dismisshint" aria-label="Dismiss">${ic('x',18)}</button></div></div>`:''}</div></section>`}
 function row(r){
+ if(r.type==='searchhint'){const off=!S.searchEnc;const all=[['Your October invoice is ready','Green Oak Utilities','Oct 28',0],['Invoice #1042','Corner Bookshop','Oct 12',0],['Invoices for tax filing','Dana Okafor','Oct 3',1],['Re: Invoice question','Priya Nair','Sep 30',0],['Re: Updated invoice details','Dana Okafor','Sep 21',1]];const list=all.filter(x=>!x[3]||!off);return `<div class="row col"><div class="lbl"><b>Preview</b><small>Where the hint appears in global search.${off?'':' It is hidden while encrypted messages are included.'}</small></div><div class="shint" role="group" aria-label="Global search example"><div class="sbar">${ic('search',18)}<span>invoices</span></div><div class="note">${list.length} results</div>${list.map(x=>`<div class="sres"><b>${x[3]?ic('lock',14)+' ':''}${esc(x[0])}</b><span class="note">${esc(x[1])} · ${x[2]}</span></div>`).join('')}${off?`<div class="hintline">${ic('info',20)}<div><b>Not finding what you’re looking for?</b><div>Encrypted messages aren’t included in search results. <span class="lnk">Change in Settings</span></div></div>${ic('x',16)}</div>`:''}</div></div>`}
+ if(r.type==='applyhint')return `<div class="row beta" role="status"><div class="lbl strong"><b>Apply new changes to folders</b><small>These changes apply to new folders. Existing folders keep their own view settings.</small></div><div class="ctl"><button class="btn" data-act="applyall">Apply changes</button></div></div>`;
  if(r.type==='sound')return `<div class="row col"><div class="lbl strong"><b>${hl(r.label)}</b></div>${soundPicker(r.key,r.dis&&r.dis())}</div>`;
  if(r.type==='notifprev'){const v=S.chatNotify;return `<div class="row col"><div class="lbl"><b>Preview</b></div><div class="notif"><span class="nic">${ic('chat',22)}</span><div><b>${v==='none'?'New chat message':'Florian'}</b>${v==='all'?'<span>Hi! :-)</span>':''}</div></div></div>`}
  if(r.type==='chatprev'){const m=[['Florian','Hi! :-)',0],['Patrick','What’s up?',1],['Florian','I’m trying Thunderbird! ;-)',0]];return `<div class="row col"><div class="lbl"><b>Preview</b></div><div class="cpv ct-${S.chatTheme} cv-${S.chatVariant}" role="group" aria-label="Conversation preview">${m.map(x=>`<div class="cm${x[2]?' me':''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div></div>`}
- if(r.type==='note')return `<div class="row" style="border-top:0"><p class="note">${hl(r.text)}</p></div>`;
+ if(r.type==='note')return `<div class="row nt"><p class="note">${hl(r.text)}${r.link?`<a href="#" class="lnk" data-nav="${r.to}" data-focus="${r.focus}">${esc(r.link)}</a>.`:''}</p></div>`;
  if(r.type==='sortprev')return sortPreview();
 if(r.type==='sendfmt'){const v=S[r.k],o=r.opts.find(x=>x[0]===v)||r.opts[0];
   const rich=`<b>Lunch on Thursday?</b><p>Hi Priya, <b>noon</b> works for me. Here is the <span class="lnk">menu</span>.</p>`,plain=`Lunch on Thursday?\n\nHi Priya, noon works for me. Here is the menu: https://example.org/menu`;
@@ -1020,7 +1057,7 @@ if(r.type==='sendfmt'){const v=S[r.k],o=r.opts.find(x=>x[0]===v)||r.opts[0];
  if(r.type==='betalink')return `<div class="row beta"><div class="lbl strong"><b>${hl(r.label)}</b><span class="badge">Beta</span><small>${hl(r.desc)}</small></div><div class="ctl"><span style="color:var(--muted)">${S[r.k]?'On':'Off'}</span><a href="#" class="lnk" data-nav="beta" data-focus="${r.k}">Try it in Beta features${ic('arrowRight',16)}</a></div></div>`;
  if(r.type==='sub')return `<div class="subh"><h3>${hl(r.label)}</h3>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div>`;
  if(r.type==='radios')return radiosHTML(r);
- if(r.type==='checks')return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="opts ${r.inline?'inline':''}" role="group" aria-label="${esc(r.label)}">${r.opts.map(o=>`<label class="opt"><input type="checkbox" data-k="${o[0]}"${S[o[0]]?' checked':''}><span><b>${hl(o[1])}</b>${o[2]?`<small>${hl(o[2])}</small>`:''}</span></label>`).join('')}</div></div>`;
+ if(r.type==='checks')return `<div class="row col"><div class="lbl${r.hide?' sr':''}"><b>${hl(r.label)}</b>${r.desc?`<small>${hl(r.desc)}</small>`:''}</div><div class="opts ${r.inline?'inline':''}" role="group" aria-label="${esc(r.label)}">${r.opts.map(o=>`<label class="opt"><input type="checkbox" data-k="${o[0]}"${S[o[0]]?' checked':''}${r.dis&&r.dis()?' disabled':''}><span><b>${hl(o[1])}</b>${o[2]?`<small>${hl(o[2])}</small>`:''}</span></label>`).join('')}</div></div>`;
  if(r.type==='swatches')return `<div class="row col"><div class="lbl"><b>${hl(r.label)}</b></div><div class="accs">${ACC.map(a=>`<button class="acc" data-accent="${a[0]}" aria-pressed="${S.accent===a[0]}"><i style="background:${a[2]?a[2][isDark()?1:0]:'conic-gradient(#0a6bd8,#d3307f,#d9610a,#0a8a8a,#0a6bd8)'}"></i>${a[1]}</button>`).join('')}</div></div>`;
  if(r.type==='preview'){const m=[['Maya Chen','Weekend plans','Are we still on for the farmers market on Saturday? I can pick you up around 9.','9:41',0],['Green Oak Pharmacy','Your prescription is ready','Your order is ready for pickup. We are open until 8 pm today.','8:12',1],['Jonas Weber','Re: Photos from the trip','Thanks for sending these! The one at the lake is my favourite.','Tue',1],['Priya Nair','Lunch Thursday?','Same place as last time works for me, around noon if that suits everyone.','Mon',1]];
   const tb=S.viewStyle==='table';
@@ -1037,7 +1074,7 @@ function matchRow(r,c,sec){return (r.label+' '+(r.desc||'')+' '+(r.opts||[]).map
 function renderPane(){
  const pane=document.getElementById('pane');
  if(query){
-  let out='',cnt=0;
+  let out=/invoice/i.test(query)?msgCard():'',cnt=0;
   for(const id of ['accounts','general','appearance','notifications','composition','privacy','calendar','chat','extensions','beta']){
    const sec=SECTIONS.find(s=>s.id===id);
    for(const c of CARDS[id]){const rows=c.rows.filter(r=>r.type!=='sub'&&r.type!=='banner'&&r.type!=='mobileflow'&&(!r.show||r.show())&&matchRow(r,c,sec.label));
@@ -1066,6 +1103,8 @@ function modal(html){const m=document.getElementById('modal'),app=document.query
  app.inert=true;const f=m.querySelector('button');if(f)f.focus()}
 const miniToggle=(k,label)=>`<div class="row"><div class="lbl strong"><b>${label}</b></div><button class="sw" role="switch" aria-checked="${S[k]}" data-k="${k}" data-modal="1" aria-label="${label}"></button></div>`;
 function dlgIcons(){modal(`<h2>App icon options</h2>${miniToggle('alertBadge','Show unread count on the app icon')}<div class="row"><div class="lbl strong"><b>Badge style</b></div><div class="seg">${[['count','Count'],['dot','Dot']].map(o=>`<button data-k="iconBadge" data-v="${o[0]}" data-modal="1" aria-pressed="${S.iconBadge===o[0]}">${o[1]}</button>`).join('')}</div></div><div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
+function dlgEncSearch(){modal(`<h2>Include encrypted messages in search?</h2><p style="margin:8px 0 12px">Thunderbird can save the words from encrypted messages in a search list on this computer. This makes encrypted messages easy to find.</p><div class="banner warning" role="note" style="margin:0 0 12px">Anyone who can use this computer can easily see which words appear in those messages.</div><p style="margin:0 0 12px">To lower the risk, encrypt the computer's disk and lock the account when leaving the computer. This makes it harder for others to reach the saved words.</p><details style="margin:0 0 16px"><summary>How encryption protects messages</summary><p style="margin:8px 0 0">End-to-end encryption protects messages stored on the mail server and on this computer. When the primary password or a passphrase protects the secret keys, messages can be read only after unlocking.</p></details><div class="foot" style="gap:8px"><button class="btn" data-act="encsearchno">Cancel</button><button class="btn" data-act="encsearchyes">Include encrypted messages</button></div>`)}
+function dlgApply(){modal(`<h2>Apply view settings</h2><p style="margin:8px 0 12px">Apply the current message list, threading and sorting settings to existing folders.</p><div class="opts" role="radiogroup" aria-label="Apply to">${[['all','All folders and subfolders'],['select','Select folders…']].map(o=>`<label class="opt"><input type="radio" name="applyScope" data-k="applyScope" value="${o[0]}"${S.applyScope===o[0]?' checked':''}><span><b>${o[1]}</b></span></label>`).join('')}</div><div class="foot" style="gap:8px"><button class="btn" data-done>Cancel</button><button class="btn primary" data-act="applyok">Apply</button></div>`)}
 function dlgAlerts(){modal(`<h2>Customize alerts</h2>${miniToggle('alertSender','Show the sender')}${miniToggle('alertPreview','Show a message preview')}<div class="foot"><button class="btn primary" data-done>Done</button></div>`)}
 
 document.addEventListener('click',e=>{
@@ -1085,7 +1124,7 @@ document.addEventListener('click',e=>{
  if(t.hasAttribute('data-done')){modal('');return}
  if(t.hasAttribute('data-close')){if(e.target===t)modal('');return}
  if(t.id==='qx'){query='';document.getElementById('q').value='';t.hidden=true;render();return}
- if(t.dataset.nav){cur=t.dataset.nav;query='';document.getElementById('q').value='';document.getElementById('qx').hidden=true;
+ if(t.dataset.nav){HINT=false;cur=t.dataset.nav;query='';document.getElementById('q').value='';document.getElementById('qx').hidden=true;
   try{history.replaceState(null,'','#'+cur)}catch(_){};render();if(t.dataset.focus)focusRow(t.dataset.focus);else{document.querySelector('main').scrollTop=0;const h=document.querySelector('#pane h1');if(h)h.focus({preventScroll:true})}return}
  if(t.dataset.accent){S.accent=t.dataset.accent;save();rerender('[data-accent="'+t.dataset.accent+'"]');flash();return}
  if(t.dataset.themePick){S.theme=t.dataset.themePick;save();rerender('[data-theme-pick="'+t.dataset.themePick+'"]');flash();return}
@@ -1101,6 +1140,11 @@ document.addEventListener('click',e=>{
   else if(a==='mobselall'){Object.keys(ACCTS).forEach(id=>S['mob_'+id]=true);save();renderPane();mobFocus()}
   else if(a==='syncin'){S.syncIn=true;save();renderPane();flash()}
   else if(a==='syncout'){S.syncIn=false;save();renderPane();flash()}
+  else if(a==='applyall')dlgApply();
+  else if(a==='dismisshint'){SRCHDIS=true;renderPane()}
+  else if(a==='encsearchyes'){S.searchEnc=true;save();modal('');renderPane();flash();toast('Encrypted messages included in search')}
+  else if(a==='encsearchno'){modal('');renderPane()}
+  else if(a==='applyok'){HINT=false;modal('');renderPane();toast('Current view settings applied successfully')}
   else if(a==='appicons')dlgIcons();
   else if(a==='alerts')dlgAlerts();
   return}
@@ -1108,6 +1152,7 @@ document.addEventListener('click',e=>{
   if(t.classList.contains('sw'))S[k]=!S[k];
   else if(t.dataset.v!==undefined)S[k]=t.dataset.v;
   else return;
+  if(['viewStyle','cardRows'].includes(k))HINT=true;
   save();
   if(t.dataset.modal){k==='iconBadge'||k==='alertBadge'?dlgIcons():dlgAlerts();return}
   if(k==='sound'&&!S.sound&&PL.key==='notif')sndStop();
@@ -1116,11 +1161,12 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
  const tg=e.target;
  if(tg.dataset&&tg.dataset.sndInput!==undefined){const f=tg.files&&tg.files[0];if(f)sndSet(tg.dataset.sndInput,f);return}
+ if(tg.dataset&&tg.dataset.k==='searchEnc'&&tg.checked){tg.checked=false;dlgEncSearch();return}
  if(tg.dataset&&tg.dataset.k&&(tg.type==='radio'||tg.type==='checkbox')){const k=tg.dataset.k;S[k]=tg.type==='radio'?tg.value:tg.checked;save();
   const q=tg.type==='radio'?`input[data-k="${k}"][value="${tg.value}"]`:`input[data-k="${k}"]`;const m=document.querySelector('main'),st=m.scrollTop;render();m.scrollTop=st;
   const n=document.querySelector(q);if(n)n.focus({preventScroll:true});flash();return}
  if(e.target.dataset&&e.target.dataset.acct){switchAcct(e.target.value);save();rerender('select[data-acct]');flash();return}
- const k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName==='SELECT'){S[k]=e.target.value;save();if(['thread','sortBy','sortOrder','chatTheme','chatVariant'].includes(k))rerender('select[data-k="'+k+'"]');flash()}});
+ const k=e.target.dataset&&e.target.dataset.k;if(k&&e.target.tagName==='SELECT'){S[k]=e.target.value;save();if(['thread','sortBy','sortOrder'].includes(k))HINT=true;if(['thread','sortBy','sortOrder','chatTheme','chatVariant'].includes(k))rerender('select[data-k="'+k+'"]');flash()}});
 document.addEventListener('input',e=>{
  if(e.target.type==='text'&&e.target.dataset.k){S[e.target.dataset.k]=e.target.value;save();paintField(e.target);flash();return}
  if(e.target.id==='q'){query=e.target.value.trim();document.getElementById('qx').hidden=!query;renderNav();renderPane();return}
