@@ -67,6 +67,20 @@ svg{flex:none}
 main{overflow:auto;padding:32px 40px 64px;min-width:0}
 .wrap{max-width:860px;margin:0 auto}
 h1{font-size:calc(24px*var(--scale));font-weight:600;margin:0 0 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.agroup{border:1px solid var(--line);border-radius:12px;background:var(--head);padding:8px 16px 16px;margin-bottom:24px}
+.agroup.acct{position:relative;overflow:hidden}
+.agroup.acct::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.agroup.all{border-style:dashed;border-width:2px}
+.agroup>header{padding:8px 0 12px}
+.agroup>header h2{margin:0;font-size:calc(18px*var(--scale));font-weight:700}
+.agroup>header p{margin:4px 0 0;color:var(--muted)}
+.agt{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;padding:4px 0;font:inherit;color:inherit;cursor:pointer;text-align:left;border-radius:4px}
+.agt .agtt{font-weight:700}
+.agt .badge{margin-left:4px}
+.agt .agc{margin-left:auto;display:inline-flex;color:var(--muted)}
+.agroup .apick{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 16px}
+.agroup .card:last-child{margin-bottom:0}
+.agroup [hidden]{display:none}
 .psub{margin:-12px 0 20px;color:var(--muted)}
 .saved{font-size:calc(12px*var(--scale));font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:2px 10px;opacity:0;transition:opacity .2s}
 .saved.show{opacity:1}
@@ -486,7 +500,7 @@ const SECTIONS=[
  {id:'beta',label:'Beta features',icon:'flask'}
 ];
 const SUBT={
- accounts:'Your email accounts: identity, servers, folders and security for each one, plus setting up mobile and sync.',
+ accounts:'Manage each email account, including its details, mail servers, folders and security. Set up mobile by transferring email accounts to an Android phone with a QR code. Other phones are not supported yet.',
  general:'Language, startup, downloads and updates.',
  appearance:'How Thunderbird looks: light or dark mode, colours and layout.',
  notifications:'Sounds and alerts for new mail.',
@@ -506,8 +520,8 @@ const WKS=[['1','1 week'],['2','2 weeks'],['3','3 weeks'],['4','4 weeks'],['5','
 const HOURS=[['6','6:00'],['7','7:00'],['8','8:00'],['9','9:00'],['10','10:00'],['16','16:00'],['17','17:00'],['18','18:00'],['19','19:00']];
 const CARDS={
 mobile:[
- {id:'mobile',title:'Set up mobile',icon:'mobile',desc:'Transfer your email accounts from this computer to Thunderbird on your phone using a QR code.',rows:[
-  {label:'Install Thunderbird on your phone first',type:'links',links:['Google Play'],kw:'android app get'},
+ {id:'mobile',title:'Set up mobile',icon:'mobile',desc:'Transfer email accounts from this computer to Thunderbird for Android using a QR code. Other phones are not supported yet.',rows:[
+  {label:'Install Thunderbird for Android first',type:'links',links:['Google Play'],kw:'android app get'},
   {type:'mobileflow'}]}
 ],
 sync:[
@@ -517,10 +531,7 @@ sync:[
   {label:'Syncing ON',type:'btns',btns:['Sync Now','Manage account'],show:()=>S.syncIn},
   {type:'sub',label:'You are currently syncing these items:',show:()=>S.syncIn},
   {label:'Synced items',type:'checks',opts:[['syncAccts','Email Accounts'],['syncAddr','Address Books'],['syncCal','Calendars'],['syncIdent','Identities'],['syncPw','Passwords']],inline:1,show:()=>S.syncIn,kw:'sync items'},
-  {label:'Email account details',type:'checks',opts:[['syncSrv','Server configuration'],['syncFilters','Filters'],['syncKeys','OpenPGP - S/MIME']],inline:1,show:()=>S.syncIn&&S.syncAccts},
-  {label:'About syncing',type:'links',links:['Learn more…']},
-  {type:'sub',label:'Using Thunderbird on your phone?'},
-  {label:'Moving your accounts to a phone is separate from syncing.',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile'}]}
+  {label:'Email account details',type:'checks',opts:[['syncSrv','Server configuration'],['syncFilters','Filters'],['syncKeys','OpenPGP - S/MIME']],inline:1,show:()=>S.syncIn&&S.syncAccts}]}
 ],
 composition:[
  {title:'Writing and formatting',icon:'pen',rows:[
@@ -707,7 +718,6 @@ extensions:[
 ],
 accounts:[
  {title:'Account details',icon:'user',rows:[
-  {type:'acctpick',label:'Choose an account to change its settings',kw:'add remove account'},
   {type:'sub',label:'Identity'},
   {k:'acctName',label:'Account name',type:'input'},
   {k:'yourName',label:'Your name',type:'input',kw:'display name'},
@@ -741,12 +751,12 @@ accounts:[
  {title:'Spam',icon:'lock',rows:[
   {k:'junkMove',label:'When messages are marked as spam',type:'select',opts:[['junk','Move to the Spam folder'],['delete','Delete immediately']],kw:'spam junk'},
   {k:'junkLog',label:'Keep a log of automatic spam detection',type:'toggle'}]},
- {id:'storage',title:'Server sync and local storage',icon:'drives',desc:'How this account stays up to date with its mail server, and how much mail is kept on this computer. This does not move your accounts to a phone.',rows:[
+ {id:'storage',title:'Server sync and local storage',icon:'drives',desc:'How this account stays up to date with its mail server, and how much mail is kept on this computer. This does not transfer accounts to a phone.',rows:[
   {k:'offlineKeep',label:'Keep messages for this account on this computer',type:'toggle',kw:'offline'},
   {k:'syncPeriod',label:'Keep messages from',type:'select',opts:[['all','All time'],['year','The last year'],['6mo','The last 6 months'],['month','The last month']],show:()=>S.offlineKeep},
   {k:'compactAuto',label:'Clean up folders automatically to free up storage',type:'toggle',kw:'compact'},
-  {type:'sub',label:'Using Thunderbird on your phone?'},
-  {label:'Transfer this account to your phone with a QR code',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile'}]},
+  {type:'sub',label:'Using Thunderbird for Android?'},
+  {label:'Transfer this account to an Android phone with a QR code',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile'}]},
  {title:'End-to-end encryption',icon:'lock',rows:[
   {k:'e2eeKey',label:'Personal OpenPGP key',type:'select',opts:[['none','No key selected'],['0x4A1F…C2D9','0x4A1F…C2D9']],kw:'pgp openpgp'},
   {label:'Keys',type:'btns',btns:['Add key…','Manage keys']},
@@ -764,7 +774,6 @@ accounts:[
 ],
 general:[
  {title:'Language',icon:'globe',rows:[
-  {label:'Use Thunderbird on your phone',desc:'Transfer your accounts with a QR code in a few steps.',type:'link',to:'accounts',focus:'mobile',btn:'Set up mobile',kw:'phone android'},
   {type:'sub',label:'Application language'},
   {k:'appLang',label:'Display language',desc:'Choose the language used for menus, buttons, and notifications.',type:'select',opts:LANGS,kw:'locale translation'},
   {label:'More languages',type:'btn',btn:'Manage languages…'},
@@ -879,7 +888,7 @@ notifications:[
   {label:'Chat message alerts and sounds',type:'link',to:'chat',btn:'Open Chat settings',kw:'messages'}]}
 ]};
 
-CARDS.accounts.splice(1,0,...CARDS.mobile,...CARDS.sync);delete CARDS.mobile;delete CARDS.sync;
+CARDS.accounts.push(...[...CARDS.mobile,...CARDS.sync].map(c=>({...c,all:1})));delete CARDS.mobile;delete CARDS.sync;
 const ACCTS={
  work:{acctName:'Work',yourName:'Shiah Russell',email:'shiah@example.org',serverType:'IMAP',server:'imap.example.org',port:'993',security:'ssl',auth:'oauth',checkStart:true,checkMin:'10',smtp:'smtp.example.org',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:true,quote:true,replyPos:'below',useSig:true,junkMove:'junk',junkLog:false,offlineKeep:true,syncPeriod:'all',compactAuto:true,e2eeKey:'none',e2eeDefault:false,e2eeDefMsg:'no',e2eeSign:false,e2eeAttachKey:false,e2eeAutocrypt:true,e2eeSubject:true,receipts:false},
  personal:{acctName:'Personal',yourName:'Shiah Russell',email:'shiah.russell@example.com',serverType:'POP3',server:'pop.example.com',port:'995',security:'ssl',auth:'password',checkStart:true,checkMin:'30',smtp:'smtp.example.com',sentCopy:true,sentFolder:'sent',archiveFolder:'archives',htmlCompose:false,quote:true,replyPos:'above',useSig:false,junkMove:'delete',junkLog:true,offlineKeep:true,syncPeriod:'all',compactAuto:false,e2eeKey:'0x4A1F…C2D9',e2eeDefault:true,e2eeDefMsg:'no',e2eeSign:false,e2eeAttachKey:false,e2eeAutocrypt:true,e2eeSubject:true,receipts:false}
@@ -952,7 +961,8 @@ function mobileFlow(){
  return `<div class="row col"><div class="banner success" role="status"><div class="bh">${ic('checkCircle',22)}<b>Accounts exported. Continue on your mobile device.</b></div></div><div class="lbl"><b>Export summary</b><small>${pl(total,'QR code')} generated · ${S.mobPw?'Passwords included':'Passwords excluded'}</small></div><p class="note" style="margin:0">${pl(sel.length,'account')} exported:</p><ul class="sumlist">${sel.map(id=>`<li>${esc(acctName(id))}</li>`).join('')}</ul><div><button class="btn" data-act="mobreset">Export more accounts</button></div></div>`}
 function rerender(sel){const m=document.querySelector('main'),st=m.scrollTop;render();m.scrollTop=st;if(sel){const n=document.querySelector(sel);if(n)n.focus({preventScroll:true})}}
 function mobFocus(){const el=document.querySelector('#card-mobile .btn.primary:not(:disabled), #card-mobile input');if(el)el.focus({preventScroll:true})}
-function focusRow(k){const cd=document.getElementById('card-'+k);if(cd){cd.classList.add('hl');cd.scrollIntoView({block:'start'});setTimeout(()=>cd.classList.remove('hl'),2400);return}
+function focusRow(k){if(cur==='accounts'&&(COLL.acct||COLL.all)){const c0=CARDS.accounts.find(c=>c.id===k);if(c0){COLL[c0.all?'all':'acct']=false;renderPane()}}
+ const cd=document.getElementById('card-'+k);if(cd){cd.classList.add('hl');cd.scrollIntoView({block:'start'});setTimeout(()=>cd.classList.remove('hl'),2400);return}
  const el=document.querySelector('[data-k="'+k+'"]');const row=el&&el.closest('.row');if(!row)return;row.classList.add('hl');row.scrollIntoView({block:'center'});setTimeout(()=>row.classList.remove('hl'),2400)}
 
 function control(r){
@@ -1071,6 +1081,11 @@ if(r.type==='sendfmt'){const v=S[r.k],o=r.opts.find(x=>x[0]===v)||r.opts[0];
 function card(c){const rows=c.rows.filter(r=>!r.show||r.show());return `<section class="card"${c.id?` id="card-${c.id}"`:''}><header>${ic(c.icon,22)}<h2>${hl(c.title)}</h2></header>${c.desc?`<p class="cdesc">${hl(c.desc)}</p>`:''}<div class="rows">${rows.map(row).join('')}</div></section>`}
 function matchRow(r,c,sec){return (r.label+' '+(r.desc||'')+' '+(r.opts||[]).map(o=>o.join(' ')).join(' ')+' '+(r.kw||'')+' '+c.title+' '+sec).toLowerCase().includes(query.toLowerCase())}
 
+const COLL={acct:true,all:true};
+function agHead(g,id,title,chip,sub){return `<header><h2 id="${id}"><button class="agt" data-act="agtoggle" data-g="${g}" aria-expanded="${!COLL[g]}" aria-controls="${id}b"><span class="agtt">${title}</span><span class="agc">${ic(COLL[g]?'caretDown':'caretUp',20)}</span></button></h2>${COLL[g]?'':`<p>${sub}</p>`}</header>`}
+function acctGroups(){const A=CARDS.accounts.filter(c=>!c.all),B=CARDS.accounts.filter(c=>c.all);
+ const pick=selw('data-acct="1"',Object.keys(ACCTS).map(id=>[id,acctName(id)]),S.acct,'Account')+`<button class="btn primary" data-act="stub">${ic('plus',18)}Add account…</button><button class="btn ghost-danger" data-act="stub">Remove</button>`;
+ return `<section class="agroup acct" aria-labelledby="ag1">${agHead('acct','ag1','Manage email accounts','','Select an account to change its settings.')}<div id="ag1b"${COLL.acct?' hidden':''}><div class="apick">${pick}</div>${A.map(card).join('')}</div></section><section class="agroup all" aria-labelledby="ag2">${agHead('all','ag2','Enable accounts on other devices','','Transfer accounts to a phone or sync them across devices.')}<div id="ag2b"${COLL.all?' hidden':''}>${B.map(card).join('')}</div></section>`}
 function renderPane(){
  const pane=document.getElementById('pane');
  if(query){
@@ -1084,7 +1099,7 @@ function renderPane(){
   paintAll();say(cnt+' setting'+(cnt==1?'':'s')+' found');return;
  }
  const sec=SECTIONS.find(s=>s.id===cur);
- pane.innerHTML=`<h1 tabindex="-1">${sec.label}<span class="saved" id="saved" aria-hidden="true">Saved</span></h1><p class="psub">${SUBT[cur]||''}</p>`+CARDS[cur].map(card).join('')+`<p class="tip">Changes apply immediately. Prototype state is kept in this browser only.</p>`;
+ pane.innerHTML=`<h1 tabindex="-1">${sec.label}<span class="saved" id="saved" aria-hidden="true">Saved</span></h1><p class="psub">${SUBT[cur]||''}</p>`+(cur==='accounts'?acctGroups():CARDS[cur].map(card).join(''))+`<p class="tip">Changes apply immediately. Prototype state is kept in this browser only.</p>`;
  paintAll();
 }
 function renderNav(){
@@ -1125,7 +1140,7 @@ document.addEventListener('click',e=>{
  if(t.hasAttribute('data-close')){if(e.target===t)modal('');return}
  if(t.id==='qx'){query='';document.getElementById('q').value='';t.hidden=true;render();return}
  if(t.dataset.nav){HINT=false;cur=t.dataset.nav;query='';document.getElementById('q').value='';document.getElementById('qx').hidden=true;
-  try{history.replaceState(null,'','#'+cur)}catch(_){};render();if(t.dataset.focus)focusRow(t.dataset.focus);else{document.querySelector('main').scrollTop=0;const h=document.querySelector('#pane h1');if(h)h.focus({preventScroll:true})}return}
+  try{history.replaceState(null,'','#'+cur)}catch(_){};if(cur==='accounts'&&!t.dataset.focus){COLL.acct=COLL.all=true}render();if(t.dataset.focus)focusRow(t.dataset.focus);else{document.querySelector('main').scrollTop=0;const h=document.querySelector('#pane h1');if(h)h.focus({preventScroll:true})}return}
  if(t.dataset.accent){S.accent=t.dataset.accent;save();rerender('[data-accent="'+t.dataset.accent+'"]');flash();return}
  if(t.dataset.themePick){S.theme=t.dataset.themePick;save();rerender('[data-theme-pick="'+t.dataset.themePick+'"]');flash();return}
  if(t.dataset.act){const a=t.dataset.act;
@@ -1142,6 +1157,7 @@ document.addEventListener('click',e=>{
   else if(a==='syncout'){S.syncIn=false;save();renderPane();flash()}
   else if(a==='applyall')dlgApply();
   else if(a==='dismisshint'){SRCHDIS=true;renderPane()}
+  else if(a==='agtoggle'){const g=t.dataset.g;COLL[g]=!COLL[g];rerender('[data-g="'+g+'"]')}
   else if(a==='encsearchyes'){S.searchEnc=true;save();modal('');renderPane();flash();toast('Encrypted messages included in search')}
   else if(a==='encsearchno'){modal('');renderPane()}
   else if(a==='applyok'){HINT=false;modal('');renderPane();toast('Current view settings applied successfully')}
